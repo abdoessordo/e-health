@@ -1,6 +1,6 @@
 import serial
 import time
-import pymysql
+import db_connection as db
 import datetime
 
 
@@ -9,9 +9,9 @@ ser = serial.Serial('COM6', 9600, timeout=1)
 time.sleep(2)
 
 # connecting to database
-connection = pymysql.connect(host="e-health.cr9kejwuec2v.us-east-2.rds.amazonaws.com", user="admin", passwd="salah_abdellah.2022", database="e-health")
-cursor = connection.cursor()
-
+#connection = pymysql.connect(host="e-health.cr9kejwuec2v.us-east-2.rds.amazonaws.com", user="admin", passwd="salah_abdellah.2022", database="e-health")
+#cursor = connection.cursor()
+### khdm b  db.connection o db.cursor
 
 while True:
     card_uid = ser.readline().decode().strip('\n')   # read a byte
