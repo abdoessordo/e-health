@@ -1,18 +1,23 @@
-# e-health
-* added db_connection file
-* Django
-	* django linked with db
-	* created django project ehealth
-	* created django app doctor
-	* created django app ordonnance
-	* created django app person
-	* created model Doctor
-	* created model ordonnace 
-	* created model normal_person
-	* created model 
-	* created methods:
-		- INSERT doctor/peson/ordonnance
-		- DELETE doctor/peson/ordonnance
-		- modify Doctor/peson/ordonnance
-		- modify persons files permissions 
-	    - 
+# ehealth
+- [ ] added db_connection file
+- [ ] Django
+	- [ ] django linked with db
+	- [x] created django project ehealth
+	- [x] created django app doctor
+		- [x] created method to get history of meds
+		- [x] created method to get history of visits
+		- [ ] created method to create a prescription
+		- [ ] created method to create an account
+
+	- [x] created django app ordonnance
+	- [x] created django app patient
+		- [x] created method to get all meds
+		- [x] created method to get all visits
+		- [ ] create account
+		- [ ] la mutuelle
+		- [ ] gerer permissions
+ 	- [x] created django app ordonnance
+	- [x] created model Doctor
+	- [x] created model ordonnace 
+	- [x] created model patient
+	- [ ] created model 
