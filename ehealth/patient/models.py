@@ -10,10 +10,9 @@ class Patient(models.Model):
 	datedenaissance=models.DateField()
 	created=models.DateField(auto_now_add=True)
 	ville = models.CharField(max_length=30)
-	age = models.IntegerField()
 	sexe=models.CharField(max_length=1,choices=Gender.choices)
-	permission_privacy=models.BooleanField()
+	permission_privacy=models.BooleanField(default=0)
 	a_mutuelle=models.BooleanField()
 	immatriculation=models.IntegerField()
-	activated=models.BooleanField(null=False)
+	activated=models.BooleanField(null=False,default=0)
  
