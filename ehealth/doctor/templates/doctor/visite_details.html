@@ -1,0 +1,10 @@
+{% extends 'ehealth/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div>
+		{{modifiable}}
+		{{visite.medcin_id.nom}}
+		{{visite.patient_id.nom}}
+	</div>
+{% endblock content %}

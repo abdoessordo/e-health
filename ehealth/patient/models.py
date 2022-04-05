@@ -1,18 +1,14 @@
 from django.db import models
+from landing.models import Person
+
 
 class Patient(models.Model):
+	person_id=models.OneToOneField(Person,on_delete=models.CASCADE)
 	class Gender(models.TextChoices):
 		Male = 'M'
 		Female = 'F'
-	card_id=models.IntegerField()
-	nom = models.CharField(max_length=30)
-	prenom = models.CharField(max_length=30)
-	datedenaissance=models.DateField()
-	created=models.DateField(auto_now_add=True)
-	ville = models.CharField(max_length=30)
-	sexe=models.CharField(max_length=1,choices=Gender.choices)
+	card_id=models.IntegerField(null=True)
 	permission_privacy=models.BooleanField(default=0)
 	a_mutuelle=models.BooleanField()
 	immatriculation=models.IntegerField()
-	activated=models.BooleanField(null=False,default=0)
  

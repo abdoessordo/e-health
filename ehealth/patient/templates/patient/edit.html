@@ -1,0 +1,10 @@
+{% extends 'ehealth/base.html' %}
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+	<p>a_mutuelle<input type="text" name="a_mutuelle">
+	<p>immatriculation<input type="text" name="immatriculation">
+	<p>permission_privacy<input type="text" name="permission_privacy">
+	<input type="submit" >
+</form>
+{% endblock %}

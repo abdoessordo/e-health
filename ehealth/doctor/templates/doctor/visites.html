@@ -1,0 +1,43 @@
+{% extends 'ehealth/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.table>:not(caption)>*>* {
+    border-bottom-width: 0px;
+}
+
+</style>
+
+    <h3 class="mb-5">Toutes les visites medicales effectuees par: <span class="ps-2" style="font-weight: bold">{{username}}</span></h3>
+   <table id="example" class="table " style="width:100%">
+        <thead>
+            <tr class="d-flex w-100 justify-content-between">
+                <th>Numero</th>
+                <th>Date</th>
+                <th>Nom du Docteur</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
+                
+                    <td>{{row.id}}</td>
+                    <td>{{row.date_created}}</td>
+                    <td>{{row.patient_id.nom}}</td>
+                    <td class="d-flex align-items-center"><a href="{% if doctor %}{% url 'doctor:get_visite_details' row.id %}{% else %} {% url 'patient:get_visite_details' row.id %} {% endif %}" >
+                    <i class="fa-solid fa-arrow-up-right-from-square fa-lg  "></i>
+                </a></td>
+                
+
+
+        </tr>
+        {% endfor %}
+
+
+
+        </tbody>
+    </table>
+
+{% endblock content %}

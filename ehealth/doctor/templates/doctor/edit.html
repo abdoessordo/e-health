@@ -1,0 +1,10 @@
+{% extends 'ehealth/base.html' %}
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+	<p>ville<input type="text" name="ville">
+	<p>INP<input type="text" name="INP">
+	
+	<input type="submit" >
+</form>
+{% endblock %}

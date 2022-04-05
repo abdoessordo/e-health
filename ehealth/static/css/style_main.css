@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+*{
+    font-family: Roboto, sans-serif;
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+}
+
+
+ul{
+    padding-left: 0;
+}
+
+.left{
+    width: 15%;
+}
+
+.left .logo{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.left ul{
+    font-size: 1.2rem;
+    color: #5e5e5e;
+}
+
+#dasshboard_list{
+    padding-left: 0;
+}
+
+.right nav{
+    min-height: 10vh;
+}
+
+
+.right nav .profile .image{
+    background:  url('../images/profile.jpg');
+    background-size: cover;
+    border-radius:50% 50% 50% 50%;
+    width:4em;
+    height:4em;
+    border: 1px solid black;
+}
+
+.right nav .profile .description .username{
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+
+.right nav .profile .description .role{
+    font-weight: 400;
+}
+
+.right nav .profile .arrow {
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.right .main{
+    min-height: 90vh;
+    background-color: #f5f7fa;
+    border-top-left-radius: 2%;
+}

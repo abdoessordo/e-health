@@ -1,23 +1,35 @@
-# ehealth
-- [ ] added db_connection file
-- [ ] Django
-	- [ ] django linked with db
-	- [x] created django project ehealth
-	- [x] created django app doctor
-		- [x] created method to get history of meds
-		- [x] created method to get history of visits
-		- [ ] created method to create a prescription
-		- [ ] created method to create an account
+* ASH KHASSNA:
+HTML:
+- ordonnance form
+- ntfahmo f base html
+DJANGO:
+- database medicament mn excel word
+- pdf generation
+- pharmacie views
 
-	- [x] created django app ordonnance
-	- [x] created django app patient
-		- [x] created method to get all meds
-		- [x] created method to get all visits
-		- [ ] create account
-		- [ ] la mutuelle
-		- [ ] gerer permissions
- 	- [x] created django app ordonnance
-	- [x] created model Doctor
-	- [x] created model ordonnace 
-	- [x] created model patient
-	- [ ] created model 
+
+* ASH KHDAM :
+
+- create wa7d ordonnance 
+- login / register: nfs compte y9d ykoun tbib o patient o pharmacie(a discuter)
+- docteur:
+- ychouf his visits
+- ychouf wa7d lvisite
+- ymodifyi (mamdyourash khass html)
+- patient kolchi jhdam
+
+* URGENT:
+-base html yt9ad
+-ordonnance 
+- chi arduino test
+
+
+
+
+
+
+
+
+
+
+
