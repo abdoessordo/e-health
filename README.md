@@ -1,35 +1,19 @@
-* ASH KHASSNA:
-HTML:
-- ordonnance form
-- ntfahmo f base html
-DJANGO:
-- database medicament mn excel word
-- pdf generation
-- pharmacie views
 
-
-* ASH KHDAM :
-
-- create wa7d ordonnance 
-- login / register: nfs compte y9d ykoun tbib o patient o pharmacie(a discuter)
-- docteur:
-- ychouf his visits
-- ychouf wa7d lvisite
-- ymodifyi (mamdyourash khass html)
-- patient kolchi jhdam
-
-* URGENT:
--base html yt9ad
--ordonnance 
-- chi arduino test
-
-
-
-
-
-
-
-
-
-
+# e-health
+* added db_connection file
+* Django
+	* django linked with db
+	* created django project ehealth
+	* created django app doctor
+	* created django app ordonnance
+	* created django app person
+	* created model Doctor
+	* created model ordonnace 
+	* created model normal_person
+	* created model 
+	* created methods:
+		- INSERT doctor/peson/ordonnance
+		- DELETE doctor/peson/ordonnance
+		- modify Doctor/peson/ordonnance
+		- modify persons files permissions 
 
