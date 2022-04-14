@@ -1,35 +1,34 @@
 import serial
-import time
+from time import sleep
 import db_connection as db
-import datetime
 
 
-# make sure the 'COM#' is set according the Windows Device Manager
-ser = serial.Serial('COM6', 9600, timeout=1)
-time.sleep(2)
+def read_card_uid():
+    ser = serial.Serial('/dev/tty/ACM0', 9600, timeout=1)
+    sleep(1)
 
-# connecting to database
-#connection = pymysql.connect(host="e-health.cr9kejwuec2v.us-east-2.rds.amazonaws.com", user="admin", passwd="salah_abdellah.2022", database="e-health")
-#cursor = connection.cursor()
-### khdm b  db.connection o db.cursor
+    while True:
+        card_uid = ser.readline().decode().strip('\n')   # read a byte
+        if card_uid:
 
-while True:
-    card_uid = ser.readline().decode().strip('\n')   # read a byte
-    if card_uid:
-        timestamp = datetime.datetime.now()
-        date = timestamp.strftime("%m-%d-%Y")
-        time = timestamp.strftime("%H:%M:%S")
-        # print(card_uid)
-        cursor.execute(f'''
-            SELECT nom, prenom, dateNaissance, age, sexe, ville 
-            FROM `e-health`.users
-            WHERE uid = {card_uid}
-        ''')
+            db.cursor.execute(f'''
+                SELECT * 
+                FROM {db.db_name}.users
+                WHERE card_id = {card_uid}
+            ''')
+            ser.close()
+            return db.cursor.fetchone()
 
-        user_informations = cursor.fetchone()
 
-        print(user_informations)
-        # break
-#
-# connection.close()
-# ser.close()
+def add_visit(user_id, medecin_id):
+    db.cursor.execute(f'''
+                    INSERT INTO {db.db_name}.visites (patient_id, medecin_id)
+                    VALUES ('{user_id}', '{medecin_id}')
+                ''')
+    db.connection.commit()
+
+
+if __name__ == '__main__':
+    # print(read_card_uid())
+
+    add_visit()
