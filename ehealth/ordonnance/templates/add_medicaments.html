@@ -5,21 +5,27 @@
             <div class="container ">
                 <div class="ordanance-form-section">
                     <h2 class="ordanance-form-title">Medicaments</h2>
-                    <form class="ps-3" action="" >
+                    <form class="ps-3" action="" method="POST" >
+                        {%csrf_token%}
                         <div class="all_med" id="med-form">
                             <div class="row" id="row-1">
                                 <div class="col-4">
                                     <label>Nom Medicament</label>
-                                    <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter medicament">
+                                    <input type="text" name="med" class="form-control"  aria-describedby="emailHelp" placeholder="Enter medicament">
                                 </div>
                                 <div class="col-2">
                                     <label>Quantite par jour</label>
-                                    <input type="number" class="form-control" value="1">
+                                    <input type="number"  name="quant" class="form-control" value="1">
                             
                                 </div>
                                 <div class="col-5">
                                     <label >Description d'utilisation</label>
-                                    <textarea class="form-control"  rows="1"></textarea>
+                                    <textarea name="desc" class="form-control"  rows="1"></textarea>
+                                
+                                </div>
+                                <div class="col-5">
+                                    <label >duree d'utilisation</label>
+                                    <textarea name="duree" class="form-control"  rows="1"></textarea>
                                 
                                 </div>
                                 <div class="col-1 d-flex flex-column justify-content-center">

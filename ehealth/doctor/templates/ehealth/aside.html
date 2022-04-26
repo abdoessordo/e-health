@@ -1,0 +1,61 @@
+{% load static %}
+<aside>
+    <div class="top">
+        <div class="logo">
+            <img src="{% static 'images/dashboard/logo.png' %}" alt="">
+            <h2>e-<span class="danger">HEALTH</span></h2>
+        </div>
+        <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close</span>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="{% if doctor %}{% url 'doctor:dashboard' %}{% elif patient %} {% url 'patient:dashboard' %} {% elif pharmacist %} #{% endif %}"
+            class="{% if dashboard %} active {%endif%}">
+            <span class="material-icons-sharp">dashboard</span>
+            <h3>Dashboard</h3>
+        </a>
+        <a href="{% if doctor %}{% url 'doctor:patients' %}{% elif patient %} {% url 'patient:doctors' %} {% elif pharmacist %} #{% endif %}"
+            class="{% if get_patient %}active {% endif %}">
+            <span class="material-icons-sharp"> people_alt</span>
+            <h3>{% if doctor %}My Patients{% elif patient %} My Doctors{% elif pharmacist %} My Clients{% endif %}</h3>
+        </a>
+        <a href="{% if doctor %}{% url 'doctor:visites' %}{% elif patient %} {% url 'patient:visites' %} {% elif pharmacist %} #{% endif %}"
+            class="{% if visite_seek %}active {% endif %}">
+            <span class="material-icons-sharp">medication</span>
+            <h3>{% if doctor %}My Consultations{% elif patient %} My Consultations {% elif pharmacist %} All
+                Orders{% endif %}</h3>
+        </a>
+        <a href="{% if doctor %}#{% elif patient %} # {% elif pharmacist %} #{% endif %}">
+            <span class="material-icons-sharp">event</span>
+            <h3>{% if doctor %}My Appointements{% elif patient %} My Prescriptions {% elif pharmacist %} All
+                Orders{% endif %}</h3>
+        </a>
+        {% if patient %}
+        <a href="{% url 'mutuelle:all_mutuelles' %}"
+            class="{% if all_mutuelles %} active {%endif%}">
+            <span class="material-icons-sharp">health_and_safety</span>
+            <h3>Insurances</h3>
+        </a>
+        {% endif %}
+        <a href="{% if doctor %}#{% elif patient %} # {% elif pharmacist %} #{% endif %}">
+            <span class="material-icons-sharp">mail_outline</span>
+            <h3>Messages</h3>
+            <span class="message-count">26</span>
+        </a>
+        <a href="{% if doctor %}#{% elif patient %} # {% elif pharmacist %} #{% endif %}">
+            <span class="material-icons-sharp">report_gmailerrorred</span>
+            <h3>Reclamation</h3>
+        </a>
+        <a href="{% if doctor %}{% url 'doctor:register' %}{% elif patient %} {% url 'patient:register' %} {% elif pharmacist %} #{% endif %}"
+            class="{% if profile_settings %} active {%endif%}">
+            <span class="material-icons-sharp">manage_accounts</span>
+            <h3>Settings</h3>
+        </a>
+        <a href="./index.html">
+            <span class="material-icons-sharp">logout</span>
+            <h3>Logout</h3>
+        </a>
+    </div>
+</aside>

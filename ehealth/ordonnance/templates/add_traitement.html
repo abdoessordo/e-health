@@ -5,17 +5,19 @@
             <div class="container ">
                 <div class="ordanance-form-section ">
                     <h2 class="ordanance-form-title">Traitement</h2>
-                    <form class="ps-3" action="" >
+                    <form class="ps-3" action="" method="POST" >
+                        {% csrf_token %}
                         <div class="all_trait" id="trait-form">
                             <div class="row" id="row-1">
                                 <div class="col-4">
                                     <label>Nom Traitement</label>
-                                    <input type="email" class="form-control" placeholder="Enter traitement">
+                        }
+            <input type="text" name="traitements" class="form-control" placeholder="Enter traitement">
                                 </div>
                                 
                                 <div class="col-7">
                                     <label>Description du Traitement</label>
-                                    <textarea class="form-control" rows="1"></textarea>
+            <textarea class="form-control"  name="desc" rows="1"></textarea>
                                 </div>
 
                                 <div class="col-1 d-flex flex-column justify-content-center">
@@ -26,7 +28,7 @@
                             </div>  
                         </div>
                         
-                    <button type="button" class="btn btn-primary mt-2" id="add_btn_trait"">Add More</button>
+                    <button type="button" class="btn btn-primary mt-2" id="add_btn_trait">Add More</button>
                     <br>
                     <center>
                         <button type="submit" class="btn btn-primary">Submit</button>                        

@@ -1,0 +1,30 @@
+{% load static %}
+<div class="bottom">
+                <h2>My appointments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for row in  visites %}
+                            <tr>
+                                <td>{{row.patient_id.person.nom}} {{row.patient_id.person.prenom}}</td>
+                                <td>{{row.date_created}}</td>
+                                <td>01:00 PM</td>
+                                <td class="warning">
+                                    <span class="material-icons-sharp"> watch_later</span>
+                                </td>
+                            </tr>
+                        {%endfor%}
+
+                        
+                    </tbody>
+                </table>
+                <a href="#">Show All</a>
+</div>

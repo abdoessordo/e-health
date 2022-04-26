@@ -1,5 +1,9 @@
+
 {% extends 'ehealth/base.html' %}
+{% load static %}
 {% block content %}
+
+{%comment%}
 <form method="POST">
 	{% csrf_token %}
 	<p>ville<input type="text" name="ville">
@@ -7,4 +11,126 @@
 	
 	<input type="submit" >
 </form>
-{% endblock %}
+
+{%endcomment%}
+        
+            
+
+            <div class="insights settings">
+                <div>
+                    <h2>General Account Settings</h2>
+                    <div class="card">
+                        <div class="row">
+                            <div class="profile-photo">
+                            	<img  src="{{user.person.img.url}} "  alt="" width="100" height="120">
+
+                               
+                            </div>
+                            <div class="description">
+                                <h2>{{user.person.nom|capfirst}} {{user.person.prenom|capfirst}}</h2>
+                                <h4 class="text-muted">Change Profile Picture</h4>
+                            </div>
+                        </div>
+                        <form action="{% if doctor %}{% url 'doctor:register' %}{%endif%}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <label for="">Name</label>
+                                <input id="input-1" name="name" class="primary" type="text" value="{{user.person.nom|capfirst}} {{user.person.prenom|capfirst}}" readonly >
+                                <button type="button" id="edit-1" ><h4 class="text-muted">Edit</h4></button>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">Email</label>
+                                <input name="email" id="input-2" class="primary" type="email" value="{{user.email}}" readonly>
+                                <button  type="button"id="edit-2" ><h4 class="text-muted">Edit</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">Gender</label>
+                                <input name="sexe"  id="input-3" class="primary" type="text" value="{{user.person.sexe}}" readonly>
+                                <button  type="button"id="edit-3"  ><h4 class="text-muted">Edit</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">Birthday</label>
+                                <input id="input-4" name="datedenaissance" class="primary" type="date" value="{{user.person.datedenaissance|date:'Y-m-d'}}" readonly>
+                                <button type="button"id="edit-4" ><h4 class="text-muted">Edit</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">Phone Number</label>
+                                <input id="input-5" name="phone" class="primary" type="number" value="{{user.person.phone}}" readonly>
+                                <button type="button" id="edit-5" onclick="switching(5)"><h4 class="text-muted">Edit</h4>
+                            </div>
+                            
+                            <div class="form-row">
+                                <label for="">CIN</label>
+                                <input id="input-6" name="CIN" class="primary" type="text" value="{{user.username}}" readonly>
+                                <button type="button" id="edit-6" ><h4 class="text-muted">Edit</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">Adress</label>
+                                <input id="input-7"  name="Adress" class="primary" type="text" value="{{user.person.adresse}}" readonly>
+                               <button type="button" id="edit-7" onclick="switching(7)"> <h4 class="text-muted">Edit</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="">City</label>
+                                <input id="input-8" name="ville" class="primary" type="text" value="{{user.person.ville}}" readonly>
+                               <button type="button" id="edit-8" onclick="switching(8)" > <h4 class="text-muted">Edit</h4>
+                            </div>
+
+                        
+                    </div>
+                </div>
+                <!--------------- END OF CARD 1 ------------>
+                <div>
+
+                  
+
+                    <div class="section-1">
+                        <h2>Doctor Settings</h2>
+                        <div class="rows privacy-settings">
+                            
+                           
+                                <div class="form-row">
+                                    <label for="">ville</label>
+                                    <input id="input-9" name="ville" class="primary" type="text" value="{{user.person.doctor.ville}}" readonly>
+                                    <button type="button" id="edit-9" onclick="switching(9)" ><h4 class="text-muted">Edit</h4>
+                                </div></button>
+
+                                <div class="form-row">
+                                    <label for="">INP</label>
+                                    <input id="input-10" name="INP" class="primary" type="text" value="{{user.person.doctor.INP}}" readonly>
+                                    <button  type="button" id="edit-10" onclick="switching(10)" ><h4 class="text-muted">Edit</h4></button>
+                                </div>
+
+                               
+                                 <button type="submit"  ><h4 class="text-muted">Submit</h4></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!--------------- END OF CARD 2 ------------>
+            </div>
+            <!--------------- END OF INSIGHTS ------------>
+
+            <div class="bottom">
+               
+            </div>
+       {%endblock%}
+       
+
+
+        </div>
+    </div>
+
+
+   
+   

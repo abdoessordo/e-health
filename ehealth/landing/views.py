@@ -4,10 +4,36 @@ from django.contrib.auth.models import  User
 from landing.models import Person
 from doctor.models import Doctor
 from pharmacie.models import Pharmacie
-
+from patient.models import Patient
 import logging
 from django.contrib import messages
+def re_redirect(request,loginp):
 
+			if loginp==1:
+				request.session["role"]="patient"
+				try:
+					request.user.person.patient.id is not None
+					return redirect("patient:visites")
+				except :
+					return redirect("patient:register")
+			elif loginp==2:
+				request.session["role"]="medecin"
+				try:
+					request.user.person.doctor.INP is not None
+					return redirect("doctor:visites")
+				except :
+					return redirect("doctor:register")
+				
+
+			elif loginp==3:
+				request.session["role"]="pharmacist"
+				pass
+				#return redirect("pharmacist:register")
+			else:
+				logging.warning(loginp,type(loginp))
+
+				messages.add_message(request, messages.ERROR, 'Something is Wrong')
+				return  redirect("patient:visites")
 def login_user(request):
 	
 
@@ -18,29 +44,13 @@ def login_user(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			if loginp=="1":
-				try:
-					if user.person.patient.id is not None:
-						return redirect("patient:visites")
-				except :
-					return redirect("patient:register")
-			elif loginp=="2":
-				try: 
-					if user.person.doctor.id is not None:
-						return redirect("doctor:visites")
-				except:
-					return redirect("doctor:register")
-				
+		
+			return redirect('landing:redirect',loginp=loginp,)
 
-			elif loginp=="3":
-				pass
-				#return redirect("pharmacist:register")
-			else:
-				messages.add_message(request, messages.ERROR, 'Something is Wrong')
-				return render(request,"patient:register")
 		else:
+		
 
-			messages.add_message(request, messages.ERROR, 'Wrong combination')
+			messages.add_message(request, messages.ERROR, username)
      
 			return render(request, 'landing/login.html', {})
 
@@ -75,10 +85,16 @@ def register_user(request):
 			last_name=request.POST["last_name"]
 			sexe=request.POST["sexe"]
 			datedenaissance=request.POST["date"]
+			adresse=request.POST["adresse"]
+			ville=request.POST["ville"]
+			email=request.POST["email"]
+			phone=request.POST["phone"]
 			if password==password2:
-				us=User.objects.create_user(username=username,password=password)
-				per=Person(user=us,nom=last_name,prenom=first_name,sexe=sexe,datedenaissance=datedenaissance)
+				us=User.objects.create_user(username=username,password=password,email=email)
+				per=Person(user=us,nom=last_name,prenom=first_name,sexe=sexe,datedenaissance=datedenaissance,ville=ville,adresse=adresse,phone=phone)
 				per.save()
+				pat=Patient(person_id=per)
+				pat.save()
 				messages.add_message(request, messages.ERROR, 'You can login now')
 				return redirect('landing:login')
 			else:

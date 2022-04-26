@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from patient.models import Patient
-from ordonnance.models import Ordonnance,Medicament
+from ordonnance.models import Ordonnance
+from med.models import Meds
 from doctor.models import Visite,Doctor
 from pharmacie.models import Pharmacie
 from django.core import serializers
@@ -54,9 +55,54 @@ def create_ordonnance(request):
 	return  JsonResponse(data)
 
 
-def add_medicaments(request):
-	return render(request, "add_medicaments.html")
+def add_medicaments(request,visite):
+	if request.method=="POST":
+		params=request.POST
+		visite=Visite.objects.get(pk=visite)
+		patient=Patient.objects.get(pk=visite.patient_id.pk)
+		a_mutuelle=patient.a_mutuelle
+		#types=params.getlist("type")
+		meds=params.getlist("med")
+		duree_de_traitement=params.getlist("duree")
+		desc=params.getlist("desc")
+		quantite=params.getlist("quant")
+		num=len(quantite)
+		for i in range(num):
+			med=Meds.objects.get(index=meds[i])
+			#phar=Pharmacie.objects.get(pk=id_pharmacie)
+			p=Ordonnance(id_visite=visite,le_type="Medicaments",
+				id_medicament=med,duree_de_traitement=duree_de_traitement[i],
+				description_de_traitement=desc[i],a_mutuelle=a_mutuelle,quantite=quantite[i]
+				)
+			p.save()
+		data={"Done":"ordo created"}
+		return  JsonResponse(data)
+	
+	else:
+
+		return render(request, "add_medicaments.html")
 
 
-def add_traitement(request):
-	return render(request, "add_traitement.html")
+def add_traitement(request,visite):
+	if request.method=="POST":
+		params=request.POST
+		visite=Visite.objects.get(pk=visite)
+		patient=Patient.objects.get(pk=visite.patient_id.pk)
+		a_mutuelle=patient.a_mutuelle
+		#types=params.getlist("type")
+		traitement=params.getlist("traitements")
+		desc=params.getlist("desc")
+		num=len(desc)
+		for i in range(num):
+			#med=Medicament.objects.get(pk=1)
+			#phar=Pharmacie.objects.get(pk=id_pharmacie)
+			p=Ordonnance(id_visite=visite,le_type="Traitement",
+				description_de_traitement=desc[i],a_mutuelle=a_mutuelle,nom_traitement=traitement[i]
+				)
+			p.save()
+		data={"Done":"traitement created"}
+		return  JsonResponse(data)
+
+	else:
+
+		return render(request, "add_traitement.html")

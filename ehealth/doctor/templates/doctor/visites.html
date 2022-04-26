@@ -2,45 +2,94 @@
 {% load static %}
 
 {% block content %}
-<style>
-.table>:not(caption)>*>* {
-    border-bottom-width: 0px;
-}
 
-</style>
 
-    <h3 class="mb-5">Toutes les visites medicales effectuees par: <span class="ps-2" style="font-weight: bold">{{username}}</span></h3>
-   <table id="example" class="table " style="width:100%">
-        <thead>
-            <tr class="d-flex w-100 justify-content-between">
-                <th>Numero</th>
-                <th>Date</th>
-                <th>Nom du Docteur</th>
-                <th>View</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for row in data %}
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
 
-                    <td>{{row.id}}</td>
-                    <td>{{row.date_created}}</td>
-                    <td>{{row.patient_id.nom}}</td>
-                    <td class="d-flex align-items-center">
-                        <a href="{% if doctor %}{% url 'doctor:get_visite_details' row.id %}{% else %} {% url 'patient:get_visite_details' row.id %} {% endif %}" >
-                            <i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i>
-                            go
+<div class="insights ">
+    <div class="card">
+        <span class="material-icons-sharp">people_alt</span>
+        <div class="middle">
+
+            <h3>Total Patients</h3>
+            <h1>{%if doctor %}{{dist_pat}}{%endif%}</h1>
+
+        </div>
+        <small class="text-muted">
+            Last Week
+        </small>
+    </div>
+    <!--------------- END OF CARD 1 ------------>
+
+    <div class="card">
+        <span class="material-icons-sharp">event</span>
+        <div class="middle">
+            <h3>Appointments</h3>
+            <h1>56</h1>
+        </div>
+        <small class="text-muted">
+            Last Week
+        </small>
+    </div>
+    <!--------------- END OF CARD 2 ------------>
+
+    <div class="card">
+        <span class="material-icons-sharp">medication</span>
+        <div class="middle">
+            <h3>Consultations</h3>
+            <h1>{%if doctor %}{{num_visite}}{%endif%}</h1>
+        </div>
+        <small class="text-muted">
+            Last Week
+        </small>
+    </div>
+    <!--------------- END OF CARD 4 ------------>
+</div>
+<!--------------- END OF INSIGHTS ------------>
+
+<div class="bottom consultations">
+    <h2>All Consultations</h2>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Phone Number</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for r in data %}
+                <tr>
+                    <td>
+                        <a class="patient-name" href="./patient_profile_public.html">
+                            {% if visite_seek %}{{r.patient_id.person_id.prenom}}
+                            {{r.patient_id.person_id.prenom}}{%elif get_patient%} {{ r.person_id.nom }} {%endif%}
                         </a>
                     </td>
+                    <td> {% if visite_seek %} {{r.patient_id.person_id.phone}}
+                        {% elif get_patient %}{{r.person_id.phone}}{%endif%}</td>
+                    <td>{% if visite_seek %}{{r.date_created|date:"D d M Y" }}{{r.visites.first.date_created}}{% elif get_patient %}
+                        {{r.visites.first.date_created|date:"D d M Y"}}{%endif%} </td>
+                    <td>{% if visite_seek %}{{r.date_created|time:"H:i" }}{% elif get_patient %}
+                        {{r.visites.first.date_created|date:"H:i"}} {%endif%} </td>
+                    <td class="primary">
+                        <a class="see-detils-btn" href=" {% url 'doctor:get_visite_details' r.id %}">
+                            <span class="material-icons-sharp"> open_in_new</span>
+                        </a>
+                    </td>
+                </tr>
+                {%endfor%}
 
 
 
-        </tr>
-        {% endfor %}
 
+            </tbody>
+        </table>
+    </div>
 
-
-        </tbody>
-    </table>
+</div>
 
 {% endblock content %}

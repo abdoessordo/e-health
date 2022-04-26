@@ -94,7 +94,7 @@
 <h2>Medicaments</h2>
 <br>
 <div style="width: 100%" class="d-flex ">
-    <a href="{% url 'ordonnance:add_medicaments' %}" style="margin-left: auto">
+    <a href="{% url 'ordonnance:add_medicaments' visite.pk %}" style="margin-left: auto">
         <button type="button" class="btn btn-primary" style="background-color: #00B0D6; border-color: #00B0D6">
             <i class="fa-solid fa-plus"></i>
             Add
@@ -107,53 +107,30 @@
         <thead>
             <tr class="d-flex w-100 justify-content-between">
                 <th>Numero</th>
-                <th>Date</th>
-                <th>Nom du Docteur</th>
-                <th>Ville</th>
-                <th>View</th>
+                <th>Nom du medicament</th>
+                <th>quantite</th>
+                <th>duree de traitement</th>
+                <th>description de traitement</th>
+                
+                {% if modifiable %}<th>Modify</th>{%endif%}
             </tr>
         </thead>
         <tbody>
+            {% for med in meds %}
             <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
                 <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
+                <td class="d-flex align-items-center">{{med.id_medicament.nom}}</td>
+                <td class="d-flex align-items-center">{{med.quantite}}</td>
+                <td class="d-flex align-items-center">{{med.duree_de_traitement}}</td>
+                 <td class="d-flex align-items-center">{{med.description_de_traitement}}</td>
+                {% if modifiable %}<td class="d-flex align-items-center">
                     <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
+                </td>{%endif%}
+              </tr>
+            {%endfor%}
 
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
+      
+            
         </tbody>
     </table>
 <br>
@@ -163,7 +140,7 @@
 <h2>Traitments</h2>
 <br>
 <div style="width: 100%" class="d-flex ">
-    <a href="{% url 'ordonnance:add_traitement' %}" style="margin-left: auto">
+    <a href="{% url 'ordonnance:add_traitements' visite.pk %}" style="margin-left: auto">
         <button type="button" class="btn btn-primary" style="background-color: #00B0D6; border-color: #00B0D6">
             <i class="fa-solid fa-plus"></i>
 
@@ -178,53 +155,23 @@
         <thead>
             <tr class="d-flex w-100 justify-content-between">
                 <th>Numero</th>
-                <th>Date</th>
-                <th>Nom du Docteur</th>
-                <th>Ville</th>
-                <th>View</th>
+                <th>Nom du traitement</th>
+                <th>description de traitement</th>
+                {% if modifiable %}<th>Modify</th>{%endif%}
             </tr>
         </thead>
         <tbody>
+             {% for trait in traitements %}
             <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
                 <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
+                <td class="d-flex align-items-center">{{trait.nom_traitement}}</td>
+                 <td class="d-flex align-items-center">{{trait.description_de_traitement}}</td>
+                {% if modifiable %}<td class="d-flex align-items-center">
                     <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
-            <tr class="d-flex justify-content-between" style="background-color: #0000000d;  border-bottom: 1px solid rgba(44,44,44,0.32)">
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">1</td>
-                <td class="d-flex align-items-center">
-                    <a href=""><i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></a>
-                </td>
-
-        </tr>
+                </td>{%endif%}
+              </tr>
+            {%endfor%}
+            
         </tbody>
     </table>
 

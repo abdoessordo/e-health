@@ -1,0 +1,97 @@
+{% extends "ehealth/base.html" %}
+{% load index %}
+{% block content %}
+<h1>Insurances</h1>
+
+<div class="insights insurances" id="insurances">
+    <div class="card">
+        <span class="material-icons-sharp">receipt_long</span>
+        <div class="middle">
+
+            <h3>Total Insurances</h3>
+            <h1>{{total_mutuelles}}</h1>
+
+        </div>
+        <small class="text-muted">
+            All Time
+        </small>
+    </div>
+    <!--------------- END OF CARD 1 ------------>
+
+    <div class="card">
+        <span class="material-icons-sharp">watch_later</span>
+        <div class="middle">
+            <h3>Pending</h3>
+            <h1>{{pending}}</h1>
+        </div>
+        <small class="text-muted">
+            All Time
+        </small>
+    </div>
+    <!--------------- END OF CARD 2 ------------>
+
+    <div class="card">
+        <span class="material-icons-sharp">done</span>
+        <div class="middle">
+            <h3>Completed</h3>
+            <h1>{{complete}}</h1>
+        </div>
+        <small class="text-muted">
+            All Time
+        </small>
+    </div>
+    <!--------------- END OF CARD 3 ------------>
+    <a class="card" href="./patient.html">
+        <span class="material-icons-sharp">add </span>
+    </a>
+    <!--------------- END OF CARD 4 ------------>
+</div>
+<!--------------- END OF INSIGHTS ------------>
+
+<div class="bottom consultations">
+    <h2>All Insurances</h2>
+    <div class="card">
+        <table id="insurances">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Created on</th>
+                    <th>Created at</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for mutuelle in mutuelles %}
+                <tr>
+                    <td> {{mutuelle.id}}</td>
+                    <td>{{mutuelle.created_at}}</td>
+                    <td>{{mutuelle.created_at}}</td>
+                    <td>${{mutuelle.total}}</td>
+                    {% if mutuelle.mutuelle_status == "P" %}
+                    <td class="warning">
+                        <span class="material-icons-sharp"> watch_later</span>
+                    </td>
+                    {% elif mutuelle.mutuelle_status == "C"  %}
+                    <td class="success">
+                        <span class="material-icons-sharp"> done</span>
+                    </td>
+                    {% endif %}
+                    <td class="primary">
+                        <a class="see-detils-btn" href="">
+                            <span class="material-icons-sharp"> open_in_new</span>
+                        </a>
+                    </td>
+                {% endfor %}
+
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}
