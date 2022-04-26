@@ -1,0 +1,1177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ------------ ROOT VARIABLES ------------- */
+
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --color-hover: #ddd;
+    /* ------------------ */
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.42rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+    /* ------------------ */
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    /* ------------------ */
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+/* ------------ DARK THEME VARIABLES ------------- */
+
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --color-hover: #464343;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+form,
+form input,
+form textarea,
+form button {
+    font-family: poppins, sans-serif;
+    font-size: 1rem;
+    background: none;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+form textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+a {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 0.87rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+label {
+    font-weight: 700;
+}
+
+.big-profile-photo,
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.big-profile-photo {
+    width: 7rem;
+    height: 7rem;
+}
+
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+p {
+    color: var(--color-dark-variant);
+}
+
+b {
+    color: var(--color-dark);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+aside {
+    height: 100vh;
+}
+
+aside .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.4rem;
+}
+
+aside .logo {
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo img {
+    width: 2rem;
+    height: 2rem;
+}
+
+aside .close {
+    display: none;
+}
+
+.flip_180 {
+    transform: rotate(180deg);
+}
+
+
+/* ====================================================
+====================== SIDEBAR ======================== 
+======================================================= */
+
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 3rem;
+}
+
+aside h3 {
+    font-weight: 500;
+}
+
+aside .sidebar a {
+    display: flex;
+    color: var(--color-info-dark);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a span {
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+}
+
+aside .sidebar a.active {
+    background: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar a.active:before {
+    content: '';
+    width: 6px;
+    height: 100%;
+    background: var(--color-primary);
+}
+
+aside .sidebar a.active span {
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover {
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span {
+    margin-left: 1rem;
+}
+
+aside .sidebar .message-count {
+    background: var(--color-danger);
+    color: var(--color-white);
+    padding: 2px 10px;
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
+}
+
+
+/* ====================================================
+====================== MAIN ==========================
+======================================================= */
+
+main {
+    margin: 1.4rem;
+}
+
+main .insights {
+    display: grid;
+    grid-template-columns: auto 25rem;
+    gap: 1.6rem;
+    margin-top: 2rem;
+
+}
+
+main .private {
+    grid-template-columns: auto;
+}
+
+main .card .middle {
+    text-align: center;
+}
+
+main .card {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+main .insights>div.profile {
+    display: grid;
+    grid-template-columns: auto 50%;
+}
+
+
+
+main .insights>div.profile .left {
+    border-right: 1px solid var(--color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .insights>div.profile .left h2 {
+    margin: 1rem 0 0 0;
+}
+
+main .insights>div.profile .left .text-muted {
+    margin-top: 0;
+    font-weight: 400;
+}
+
+main .insights>div.profile .left .appoitements {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+main .insights>div.profile .left .appoitements .past {
+    border-right: 1px solid var(--color-light);
+}
+
+main .insights>div.profile .left #send-msg-btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: var(--card-border-radius);
+}
+
+main .insights>div.profile .left #send-msg-btn h3 {
+    margin: 0;
+}
+
+main .insights>div.profile .rigth {
+    margin-top: 0;
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+}
+
+#edit span {
+    background: unset;
+    padding: unset;
+    border-radius: unset;
+    color: var(--color-primary);
+    font-size: 2rem;
+    float: right;
+}
+
+main .insights>div.profile .rigth .info {
+    padding-left: 1.8rem;
+    margin-top: 1.8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 4rem;
+}
+
+main .insights>div.profile .rigth .info .info-elem {
+    border-bottom: 1px solid var(--color-light);
+}
+
+main .insights>div.profile .rigth .info .info-elem .user-info {
+    font-weight: 400;
+}
+
+main .insights>div.profile .rigth .info .info-elem:last-child,
+main .insights>div.profile .rigth .info .info-elem:nth-child(7) {
+    border: none;
+}
+
+
+
+main .insights>div:hover {
+    box-shadow: none;
+}
+
+main .insights.private>div.profile {
+    display: grid;
+    grid-template-columns: auto 80%;
+    gap: 1rem;
+}
+
+main .insights.private>div.profile>span:first-child {
+    text-align: center;
+}
+
+main .insights.private>div.profile>div {
+    margin-right: 1rem;
+    text-align: justify;
+}
+
+
+main .insights.private>div span.locked {
+    padding: 0.5rem;
+    border-radius: 0%;
+    color: var(--color-dark);
+    background: none;
+    font-size: 5rem;
+}
+
+main .insights.other>div span {
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2rem;
+}
+
+
+
+
+main .insights h3 {
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+
+main .insights small {
+    display: block;
+    margin-top: 1.3rem;
+}
+
+main .insights.settings {
+    grid-template-columns: auto 40rem;
+}
+
+main .insights.settings>div .row {
+    display: grid;
+    grid-template-columns: 7rem auto;
+}
+
+main .insights.settings>div .row .profile-photo {
+    width: 5rem;
+    height: 5rem;
+}
+
+main .insights.settings>div .row .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .insights.settings>div .row .description h4 {
+    cursor: pointer;
+}
+
+.rigth .section-1 form,
+main .insights.settings>div form {
+    margin-top: 2rem;
+}
+
+.rigth .section-1 form .form-row,
+.insights.settings>div form .form-row {
+    display: grid;
+    grid-template-columns: 12rem auto 5rem;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 1rem;
+}
+
+.rigth .section-1 form .form-row {
+    grid-template-columns: 5rem auto 5rem;
+
+}
+
+form .form-row input.edit-on {
+    color: red;
+    border-bottom: 1px solid var(--color-light);
+}
+
+.red-color {
+    color: red;
+}
+
+.rigth .section-1 form .form-row button,
+main .insights.settings>div form .form-row button {
+    cursor: pointer;
+}
+
+main .insights.settings>div form .form-row h4 {
+    text-align: center;
+}
+
+main .insights.settings>div form .form-row:last-child {
+    margin-bottom: 0;
+}
+
+main form.add-form .form-row {
+    display: grid;
+    gap: 5rem;
+    user-select: none;
+    margin-bottom: 3rem;
+}
+
+main form#form-trait .form-row {
+    grid-template-columns: 12rem auto 5rem;
+}
+
+main form#form-med .form-row {
+    grid-template-columns: 12rem 10rem auto 5rem;
+}
+
+main form.add-form .form-row>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-light);
+}
+
+main form.add-form .form-row>div *:last-child {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+main form.add-form .form-row h4 {
+    text-align: center;
+}
+
+main form.add-form .form-row:last-child {
+    margin-bottom: 0;
+}
+
+main form.add-form .form-row div:last-child {
+    justify-content: center;
+    color: red;
+    border: none;
+}
+
+main form.add-form .form-row div:last-child span {
+    cursor: pointer;
+}
+
+main form.add-form .add-more-btn,
+.submit-btn-holder .submit-btn,
+main form.add-form button .submit-btn {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: calc(0.5 * var(--card-padding));
+    margin-top: 2rem;
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.submit-btn-holder .submit-btn:hover {
+    padding: calc(0.5 * var(--card-padding)) var(--card-padding);
+}
+
+
+main form.add-form button {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.submit-btn-holder {
+    position: absolute;
+    bottom: 5rem;
+    right: 3rem;
+}
+
+main form.user-settings .submit-btn {
+    padding: calc(0.3 * var(--card-padding));
+}
+
+main form.user-settings .submit-btn:hover {
+    padding: calc(0.3 * var(--card-padding)) var(--card-padding);
+}
+
+.submit-btn-holder .submit-btn,
+main form.add-form button .submit-btn {
+    border: 2px solid var(--color-primary);
+    margin: 0 auto;
+}
+
+main form.add-form .add-more-btn:hover,
+main form.add-form .submit-btn:hover {
+    padding: calc(0.5 * var(--card-padding)) calc(2 * var(--card-padding));
+}
+
+main .insights.settings .section-1 {
+    margin-bottom: 3rem;
+}
+
+main .insights.settings .section-1 .privacy-settings .row,
+.rigth .section-1 .privacy-settings .row {
+    display: grid;
+    grid-template-columns: auto 5rem;
+}
+
+main .insights.settings .section-1 .privacy-settings .row .description h3,
+main .insights.settings .section-1 .privacy-settings .row .description .text-muted {
+    margin: 0;
+}
+
+main .insights.settings .section-1 .privacy-settings .row {
+    margin-bottom: 0;
+}
+
+main .insights.settings .section-1 .privacy-settings .row>label {
+    margin: auto 0;
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+
+/* switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* end switch  */
+
+
+
+
+/* ====================================================
+====================== BOTTON =========================
+======================================================= */
+
+main .bottom {
+    margin-top: 2.5rem;
+    transform: none;
+
+}
+
+main .bottom h2 {
+    margin-bottom: 0.8rem;
+}
+
+main .bottom table {
+    background: var(--color-white);
+    width: 100%;
+    transition: all 300ms ease;
+    text-align: center;
+    /* min-height: 30em; */
+}
+
+main .bottom table:hover {
+    box-shadow: none;
+}
+
+main table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+main table tbody tr:last-child td {
+    border: none;
+}
+
+.show-all-btn {
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+
+
+/* ====================================================
+====================== RIGTH ==========================
+======================================================= */
+
+.rigth {
+    margin-top: 1.4rem;
+}
+
+.rigth .top {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.rigth .top button {
+    display: none;
+}
+
+.rigth .theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+.rigth .theme-toggler span {
+    font: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: cenetr;
+    justify-content: center;
+}
+
+.rigth .theme-toggler span.active {
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+.rigth .top .profile {
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+}
+
+.rigth .top .profile .role {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    cursor: pointer;
+}
+
+.rigth .top .profile .role span {
+    transition: all 300ms ease;
+}
+
+.drop-down-content {
+    display: none;
+    opacity: 0%;
+    list-style: none;
+    right: 5rem;
+    position: absolute;
+    min-width: 10rem;
+    z-index: 10;
+    background-color: var(--color-white);
+    overflow: auto;
+    box-shadow: var(--box-shadow);
+    padding: 0;
+    border-radius: var(--card-border-radius);
+    transition: all 300ms ease;
+}
+
+.drop-down-content li a {
+    color: var(--color-dark);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.drop-down-content li a:hover {
+    background-color: var(--color-hover);
+}
+
+.show-drop-down {
+    opacity: 100%;
+    display: block;
+}
+
+.hide-from {
+    display: none;
+}
+
+
+
+
+/* ====================================================
+====================== SECTION-1 ======================
+======================================================= */
+.section-1,
+.section-1,
+.rigth .section-3 {
+    margin-top: 1rem;
+}
+
+.section-1 h2,
+.rigth .section-3 h2 {
+    margin-bottom: 0.8rem;
+}
+
+.section-1 .rows,
+.rigth .section-3 .rows {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.section-1 .rows:hover,
+.rigth .section-3 .rows:hover {
+    box-shadow: none;
+}
+
+.rows .row,
+.rigth .section-3 .rows .row,
+.rigth .section-2 .item {
+    display: grid;
+    grid-template-columns: 2.6rem auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rigth .section-3 .rows .row {
+    grid-template-columns: 2.6rem auto 2.6rem;
+}
+
+.rigth .section-3 .rows .row span {
+    text-align: center;
+    vertical-align: middle;
+    transform: translateY(15%);
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+/* ====================================================
+==================== SECTION-2 ========================
+======================================================= */
+
+.rigth .section-2,
+.rigth .section-4,
+.rigth .section-5 {
+    margin-top: 2rem;
+}
+
+.rigth .section-2 h2,
+.rigth .section-4 h2,
+.rigth .section-5 h2 {
+    margin-bottom: 0.8rem;
+}
+
+.rigth .section-2 .item,
+.rigth .section-4 .item,
+.rigth .section-5 .item {
+    display: grid;
+    grid-template-columns: 2.6rem auto 1.5rem 1.5rem;
+    background: var(--color-white);
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.rigth .section-4 .item {
+    grid-template-columns: 2.6rem auto 2rem;
+}
+
+.rigth .section-5 .item {
+    grid-template-columns: 2.6rem auto 3rem;
+}
+
+.rigth .section-2 .item:hover,
+.rigth .section-4 .item:hover,
+.rigth .section-5 .item:hover {
+    box-shadow: none;
+}
+
+.rigth .section-2 .item>div span,
+.rigth .section-4 .item>div span,
+.rigth .section-5 .item>div span {
+    cursor: pointer;
+}
+
+/* ====================================================
+==================== MEDIA QUERIES ====================
+======================================================= */
+
+
+/* ========== SAMLL LAPTOPS AND TABLETS ========== */
+
+@media screen and (max-width:1500px) {
+    .container {
+        width: 94%;
+        grid-template-columns: 7rem auto 18rem;
+    }
+
+    aside .logo h2 {
+        display: none;
+    }
+
+    aside .sidebar h3 {
+        display: none;
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+    main .insights,
+    main .insights.settings,
+    main .insights.settings>div:nth-child(2) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    main .insights>div:nth-child(2) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    main .insights.settings>div form .form-row {
+        grid-template-columns: 10rem auto 5rem;
+    }
+
+    main .bottom {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .drop-down-content {
+        right: 1rem;
+    }
+
+    main #form-holder-med.card {
+        width: 70%;
+    }
+
+    main form#form-med .form-row {
+        gap: 1rem;
+        grid-template-columns: 10rem 8rem auto 3rem;
+    }
+
+    main #form-holder-trait.card,
+    main #form-holder-med.card {
+        position: absolute;
+    }
+}
+
+
+/* ========== MOBILE PHONES ========== */
+
+@media screen and (max-width:768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: fixed;
+        left: -100%;
+        background: var(--color-white);
+        width: 18rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100vh;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to {
+            left: 0;
+        }
+    }
+
+    aside .logo {
+        margin-left: 1rem;
+    }
+
+    aside .logo h2 {
+        display: inline;
+    }
+
+    aside .sidebar h3 {
+        display: inline;
+    }
+
+    aside .sidebar a {
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: absolute;
+        bottom: 5rem;
+    }
+
+    aside .close {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    main {
+        margin-top: 8rem;
+        padding: 0 1rem;
+    }
+
+    main .insights>div.profile {
+        display: block;
+    }
+
+    main .insights>div.profile .left {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-light);
+    }
+
+    main .insights>div.profile .rigth {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    main .insights>div:nth-child(2) {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0.8rem;
+    }
+
+    main .bottom {
+        position: relative;
+        margin-top: 3rem;
+        width: 100%;
+
+    }
+
+    main .bottom table {
+        width: 100%;
+        margin: 0;
+    }
+
+    main .bottom table thead tr>th:nth-child(2),
+    main .bottom table tbody tr>td:nth-child(2) {
+        display: none;
+    }
+
+    .rigth {
+        width: 94%;
+        margin: 0 auto 4rem;
+        padding: 0 1rem;
+    }
+
+    .rigth .top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        padding: 0 0.8rem;
+        height: 4.6rem;
+        background: var(--color-white);
+        width: 100%;
+        margin: 0;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+    }
+
+    .rigth .top .theme-toggler {
+        width: 4.4rem;
+        position: absolute;
+        left: 4rem;
+    }
+
+    .rigth .top .profile {
+        align-items: center;
+    }
+
+    .rigth .top .profile .info p {
+        display: none;
+    }
+
+    .rigth .top button {
+        display: inline-block;
+        background: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem
+    }
+
+    .rigth .top button span {
+        font-size: 2rem;
+    }
+
+    .rigth #become-doctor {
+        margin-top: -3rem;
+    }
+
+    .drop-down-content {
+        top: 4rem
+    }
+
+    .submit-btn-holder {
+        position: relative;
+        right: unset;
+        bottom: unset;
+        margin-top: 3rem;
+    }
+}
