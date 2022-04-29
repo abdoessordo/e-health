@@ -67,8 +67,8 @@
                 {% for mutuelle in mutuelles %}
                 <tr>
                     <td> {{mutuelle.id}}</td>
-                    <td>{{mutuelle.created_at}}</td>
-                    <td>{{mutuelle.created_at}}</td>
+                    <td>{{mutuelle.created_at|date:"D d M Y"}}</td>
+                    <td>{{mutuelle.created_at|time:"H:i"}}</td>
                     <td>${{mutuelle.total}}</td>
                     {% if mutuelle.mutuelle_status == "P" %}
                     <td class="warning">

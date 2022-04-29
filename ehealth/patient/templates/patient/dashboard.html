@@ -1,137 +1,138 @@
 {% extends "ehealth/base.html" %}
 {% load index %}
-{% block content %}
+{% block content %} 
+        
+        <!-- END OF ASIDE -->
+      
+            
+         
+            {% include "ehealth/cards.html"%} 
+            <!--------------- END OF INSIGHTS ------------>
+           <div class="bottom">
+                <h2>My appointments</h2>
+                 <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-<!-- END OF ASIDE -->
-
-
-
-{% include "ehealth/cards.html"%}
-<!--------------- END OF INSIGHTS ------------>
-<div class="bottom">
-    <h2>My appointments</h2>
-    <div class="card">
-        <table>
-            <thead>
-                <tr>
-                    <th>Patient Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% if visites|length == 0 %}
-                <td>No records</td>
-                {% else %}
-                {% for visite in  visites|slice:":10" %}
-                <tr>
-                    <td>{{visite.patient_id.person_id.nom}} {{visite.patient_id.person_id.prenom}}</td>
-                    <td>{{ visite.date_created|date:"D d M Y" }} </td>
-                    <td>{{ visite.date_created|time:"H:i" }}</td>
-                    <td class="warning">
-                        <span class="material-icons-sharp"> watch_later</span>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% endif %}
-
-            </tbody>
-        </table>
-    </div>
-    <a href="{% url 'patient:visites' %}" class="show-all-btn">Show All</a>
-</div>
-
-</main>
-<!--------------- END OF MAIN ------------>
-
-{%endblock%}
-<!--------------- END OF TOP ------------>
-{% block content2 %}
-
-<div class="section-1">
-    <h2>Recent Prescriptions</h2>
-    <div class="rows">
-        {% if ordo|length == 0 %}
-        <div class="row">
-            No records
-        </div>
-        {%else%}
-        {% for ord,num in zipped %}
-
-        <div class="row">
-            <div class="profile-photo">
-                <img src="{{ord.id_visite.medcin_id.person.img}}" alt="">
+                    <tbody>
+                        {% if visites|length == 0 %}
+                        <td>No records</td>
+                        {% else %}
+                        {% for visite in  visites|slice:":10" %}
+                        <tr>
+                            <td>{{visite.medcin_id.person_id.nom}} {{visite.medcin_id.person_id.prenom}}</td>
+                            <td>{{ visite.date_created|date:"D d M Y" }} </td>
+                            <td>{{ visite.date_created|time:"H:i" }}</td>
+                            <td class="warning">
+                                <span class="material-icons-sharp"> watch_later</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                        
+                    </tbody>
+                </table>
             </div>
-            <div class="description">
-                <p><b>{{ord.id_visite.medcin_id.person_id.nom}} {{ord.id_visite.medcin_id.person.prenom}}</b>
-                    <br>{{num}} On going</p>
+              <a href="{% url 'patient:visites' %}" class="show-all-btn">Show All</a>
+                </div>
+
+  
+  {%endblock%}
+
+        <!--------------- END OF MAIN ------------>
+
+   
+            <!--------------- END OF TOP ------------>
+            {% block content2 %}
+
+            <div class="section-1">
+                <h2>Recent Prescriptions</h2>
+                <div class="rows">
+                    {% if ordo|length == 0 %}
+                     <div class="row">
+                    No records 
+                </div>  
+                {%else%}
+                    {% for ord,num in zipped %}
+                  
+                    <div class="row">
+                        <div class="profile-photo">
+                            <img src="{{ord.id_visite.medcin_id.person_id.img.url}}" alt="">
+                        </div>
+                        <div class="description">
+                            <p><b>{{ord.id_visite.medcin_id.person_id.nom}} {{ord.id_visite.medcin_id.person.prenom}}</b> <br>{{num}} On going</p>
+                        </div>
+                    </div>
+                    {%endfor%}
+                {%endif%}
+                    
+                </div>
+              
             </div>
-        </div>
-        {%endfor%}
-        {%endif%}
+            <a href="{% url 'patient:doctors' %}" class="show-all-btn">Show All</a>
 
-    </div>
+            <!--------------- END OF SECTION-1 ------------>
 
-</div>
-<a href="{% url 'doctor:patients' %}" class="show-all-btn">Show All</a>
-
-<!--------------- END OF SECTION-1 ------------>
-
-<div class="section-2">
-    <h2>Appointments Requests</h2>
+            <div class="section-2">
+                <h2>Appointments Requests</h2>
 
 
-    <div class="item">
-        <div class="profile-photo">
-            <img src="./images/profile-4.jpg" alt="">
-        </div>
-        <div class="description">
-            <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
-        </div>
-        <div class="danger">
-            <span class="material-icons-sharp">highlight_off</span>
-        </div>
-        <div class="success">
-            <span class="material-icons-sharp">check_circle_outline</span>
-        </div>
-    </div>
+                <div class="item">
+                    <div class="profile-photo">
+                        <img src="./images/profile-4.jpg" alt="">
+                    </div>
+                    <div class="description">
+                        <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
+                    </div>
+                    <div class="danger">
+                        <span class="material-icons-sharp">highlight_off</span>
+                    </div>
+                    <div class="success">
+                        <span class="material-icons-sharp">check_circle_outline</span>
+                    </div>
+                </div>
 
-    <div class="item">
-        <div class="profile-photo">
-            <img src="./images/profile-2.jpg" alt="">
-        </div>
-        <div class="description">
-            <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
-        </div>
-        <div class="danger">
-            <span class="material-icons-sharp">highlight_off</span>
-        </div>
-        <div class="success">
-            <span class="material-icons-sharp">check_circle_outline</span>
-        </div>
-    </div>
+                <div class="item">
+                    <div class="profile-photo">
+                        <img src="./images/profile-2.jpg" alt="">
+                    </div>
+                    <div class="description">
+                        <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
+                    </div>
+                    <div class="danger">
+                        <span class="material-icons-sharp">highlight_off</span>
+                    </div>
+                    <div class="success">
+                        <span class="material-icons-sharp">check_circle_outline</span>
+                    </div>
+                </div>
 
-    <div class="item">
-        <div class="profile-photo">
-            <img src="./images/profile-3.jpg" alt="">
-        </div>
-        <div class="description">
-            <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
-        </div>
-        <div class="danger">
-            <span class="material-icons-sharp">highlight_off</span>
-        </div>
-        <div class="success">
-            <span class="material-icons-sharp">check_circle_outline</span>
-        </div>
-    </div>
+                <div class="item">
+                    <div class="profile-photo">
+                        <img src="./images/profile-3.jpg" alt="">
+                    </div>
+                    <div class="description">
+                        <p><b>Mike Tyson</b> <br> 28 Jan 2022 &#8226 9 AM <br></p>
+                    </div>
+                    <div class="danger">
+                        <span class="material-icons-sharp">highlight_off</span>
+                    </div>
+                    <div class="success">
+                        <span class="material-icons-sharp">check_circle_outline</span>
+                    </div>
+                </div>
 
 
-</div>
-<a href="#" class="show-all-btn">Show All</a>
+            </div>
+            <a href="#" class="show-all-btn">Show All</a>
 
-</div>
-
-{% endblock %}
+        </div>
+ 
+  {% endblock %} 

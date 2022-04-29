@@ -1,0 +1,151 @@
+{% extends "ehealth/base.html" %}
+{%load static%}
+{% block content%}
+<div class="insights dashboard">
+                <div class="card">
+                    <span class="material-icons-sharp">people_alt</span>
+                    <div class="middle">
+
+                        <h3>Total Patients</h3>
+                        <h1>{{pat_num}}</h1>
+
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 1 ------------>
+
+                <div class="card">
+                    <span class="material-icons-sharp">analytics</span>
+                    <div class="middle">
+                        <h3>Total Sales</h3>
+                        <h1>{{income}}</h1>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 2 ------------>
+
+                <div class="card">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <div class="middle">
+                        <h3>Total Expenses</h3>
+                        <h1>$500</h1>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 3 ------------>
+                <div class="card">
+                    <span class="material-icons-sharp">stacked_line_chart</span>
+                    <div class="middle">
+                        <h3>Total Income</h3>
+                        <h1>$1,200</h1>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 4 ------------>
+                <div class="card">
+                    <span class="material-icons-sharp">add </span>
+                </div>
+                <!--------------- END OF CARD 5 ------------>
+            </div>
+            <!--------------- END OF INSIGHTS ------------>
+
+
+            <div class="bottom">
+                <h2>Recent Orders</h2>
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Doliprane</td>
+                                <td>100</td>
+                                <td>25 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="warning">
+                                    <span class="material-icons-sharp"> watch_later</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Doliprane</td>
+                                <td>100</td>
+                                <td>25 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="warning">
+                                    <span class="material-icons-sharp"> watch_later</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pomada Safra</td>
+                                <td>500</td>
+                                <td>10 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="success">
+                                    <span class="material-icons-sharp"> done</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pomada Safra</td>
+                                <td>500</td>
+                                <td>10 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="success">
+                                    <span class="material-icons-sharp"> done</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pomada Safra</td>
+                                <td>500</td>
+                                <td>10 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="success">
+                                    <span class="material-icons-sharp"> done</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pomada Safra</td>
+                                <td>500</td>
+                                <td>10 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="success">
+                                    <span class="material-icons-sharp"> done</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Pomada Safra</td>
+                                <td>500</td>
+                                <td>10 Mai 2022</td>
+                                <td>01:00 PM</td>
+                                <td class="success">
+                                    <span class="material-icons-sharp"> done</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class="show-all-btn" href="#">Show All</a>
+            </div>
+
+{%endblock%}

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'ordonnance',
     'landing',
     'med',
-    'mutuelle'
+    "mutuelle"
 
 
 

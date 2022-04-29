@@ -8,13 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- STYLESHEET -->
-    <script src="{% static 'script/dashboard/script.js' %}" defer></script>
-
     {%if  profile or profile_settings%}
-    <link rel="stylesheet" href="{% static 'css/profile/style.css' %}">
-    <script src="{% static 'script/profile_settings/script.js'  %}" defer></script>
+        <link rel="stylesheet" href="{% static 'css/profile/style.css' %}">
+       
     {%else%}
-    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+     <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
     {%endif%}
     <!-- MATRIAL ICONS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
@@ -25,13 +23,14 @@
 <body>
     <div class="container">
         {% include "ehealth/aside.html"%}
-        <main>
-            <h1>{{title}}</h1>
-
-            {% block content %}
-            {% endblock %}
-        </main>
-        <div class="rigth">
+    	  <main>
+    	  	<h1>{{title}}</h1>
+    	
+    	{% block content %}
+        	
+        {% endblock %}
+         </main>
+    	<div class="rigth">
             <div class="top">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
@@ -65,12 +64,18 @@
                 </div>
             </div>
 
-            {% block content2 %}
-            {%endblock%}
+        {% block content2 %}
+        {%endblock%}
 
+        
+    </div>
 
-        </div>
-
+    <script src="{% static 'script/dashboard/script.js' %}"></script>
+    {% if add_trai %}
+    <script src="{% static 'script/ordonnance/main.js' %}"></script>
+    {%elif  profile or profile_settings%}
+     <script src="{% static 'script/profile_settings/script.js' %}"></script>
+    {%endif%}
 </body>
 
 </html>

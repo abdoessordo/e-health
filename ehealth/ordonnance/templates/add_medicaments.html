@@ -1,7 +1,7 @@
 {% extends 'ehealth/base.html' %}
 {% load static %}
 
-{% block content %}
+
             <div class="container ">
                 <div class="ordanance-form-section">
                     <h2 class="ordanance-form-title">Medicaments</h2>
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary mt-2" id="add_btn_med">Add More</button>
+                        <button type="button" class="btn btn-primary mt-2" type_btn="med" id="add_btn_med">Add More</button>
                         <br>
                         <center>
                             <button type="submit" class="btn btn-primary" >Submit</button>
@@ -45,5 +45,49 @@
                       
                 </div>
             </div>
+{% block content %}
+ <div class="card" id="form-holder-med">
+                <form class="add-form" id="form-med" action="" method="POST">
+                    {%csrf_token %}
+                    <div class="rows">
 
+                        <div class="form-row" id="row-1">
+                            <div>
+                                <label for="">Drug Name</label>
+                                <input class="input-ajax" type="text"  id="med-name-1" placeholder="Enter Drug"><select id="result-1" name="med" size=5 class="select-ajax" hidden>
+                                </select>
+                                
+                            </div>
+
+                            <div>
+                                <label for="">Quantity Per day</label>
+                                <input class="primary ajax-primary" type="number" name="quant" value="1">
+                            </div>
+
+                            <div>
+                                <label for="">Usage Description</label>
+                                <textarea class="primary " rows="1" name="desc" placeholder="Enter Descpritption"></textarea>
+                            </div>
+
+                            <div>
+                                <span id="delete-row-1" onclick=delete_row(this.id)
+                                    class="material-icons-sharp">delete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-more-btn" onclick="add_row('med')">
+                        <span class="material-icons-sharp">add</span>
+                        <h3>Add More</h3>
+                    </div>
+
+                    <button type="submit">
+                        <div class="submit-btn">
+                            <h3>Submit</h3>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+        
 {% endblock %}

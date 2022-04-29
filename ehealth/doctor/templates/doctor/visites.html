@@ -3,93 +3,124 @@
 
 {% block content %}
 
-
-
 <div class="insights ">
-    <div class="card">
-        <span class="material-icons-sharp">people_alt</span>
-        <div class="middle">
+                <div class="card">
+                    <span class="material-icons-sharp">people_alt</span>
+                    <div class="middle">
 
-            <h3>Total Patients</h3>
-            <h1>{%if doctor %}{{dist_pat}}{%endif%}</h1>
+                        <h3>{%if doctor %}Total Patients{%elif patient %}Total Doctors{%endif%}</h3>
+                        <h1>{%if doctor %}{{dist_pat}}{%elif patient %}{{num_doc}}{%endif%}</h1>
 
-        </div>
-        <small class="text-muted">
-            Last Week
-        </small>
-    </div>
-    <!--------------- END OF CARD 1 ------------>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 1 ------------>
 
-    <div class="card">
-        <span class="material-icons-sharp">event</span>
-        <div class="middle">
-            <h3>Appointments</h3>
-            <h1>56</h1>
-        </div>
-        <small class="text-muted">
-            Last Week
-        </small>
-    </div>
-    <!--------------- END OF CARD 2 ------------>
+                <div class="card">
+                    <span class="material-icons-sharp">event</span>
+                    <div class="middle">
+                        <h3>Appointments</h3>
+                        <h1>56</h1>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 2 ------------>
 
-    <div class="card">
-        <span class="material-icons-sharp">medication</span>
-        <div class="middle">
-            <h3>Consultations</h3>
-            <h1>{%if doctor %}{{num_visite}}{%endif%}</h1>
-        </div>
-        <small class="text-muted">
-            Last Week
-        </small>
-    </div>
-    <!--------------- END OF CARD 4 ------------>
+                <div class="card">
+                    <span class="material-icons-sharp">medication</span>
+                    <div class="middle">
+                        <h3>Consultations</h3>
+                        <h1>{%if doctor %}{{num_visite}}{%elif patient%}{{num_visite}}{%endif%}</h1>
+                    </div>
+                    <small class="text-muted">
+                        Last Week
+                    </small>
+                </div>
+                <!--------------- END OF CARD 4 ------------>
+            </div>
+            <!--------------- END OF INSIGHTS ------------>
+
+            <div class="bottom consultations">
+                <h2>{% if patient and get_patient %}All Doctors {% elif get_patient and doctor%}All Patients {%elif visite_seek%}All Consultations{%endif%}</h2>
+                <div class="card">
+                <table>
+                     
+                    <thead>
+                        <tr>
+                            <th>{% if patient  %}Doctor Name {%else%} Patient Name{%endif%}</th>
+                            <th>Phone Number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for r in data %}
+                        <tr>
+                            <td>
+                                <a class="patient-name" href="
+                                {% if doctor and visite_seek %} {% url 'patient:profile' r.patient_id.pk %}
+                                {% elif doctor and get_patient %} {% url 'patient:profile' r.pk %}
+                                {%else%} #
+                                {%endif%}
+
+
+                                ">
+                                    {% if visite_seek and doctor %}{{r.patient_id.person_id.prenom}} {{r.patient_id.person_id.prenom}}
+                                    
+                                    {% elif visite_seek and patient %}{{r.medcin_id.person_id.prenom}}{{r.medcin_id.person_id.prenom}}
+                                    {%elif get_patient%} {{ r.person_id.nom }} {%endif%}
+                                </a>
+                            </td>
+                            <td> {% if visite_seek %} {{r.patient_id.person_id.phone}} {% elif get_patient %}{{r.person_id.phone}}{%endif%}</td>
+                            <td>{% if visite_seek %}{{r.date_created|date:"D d M Y" }}{% elif get_patient %} {{r.visites.first.date_created|date:"D d M Y"}}{%endif%}   </td>
+                            <td>{% if visite_seek %}{{r.date_created|time:"H:i" }}{% elif get_patient %} {{r.visites.first.date_created|time:"H:i"}} {%endif%}  </td>
+                            {% if visite_seek   and doctor %}
+                                <td class="primary">
+                                   <a class="see-detils-btn" href=" {% url 'doctor:get_visite_details' r.id %}">
+                                    <span class="material-icons-sharp"> open_in_new</span>
+                                  </a>
+                            {% elif visite_seek   and patient %}
+                                <td class="primary">
+                                   <a class="see-detils-btn" href=" {% url 'patient:get_visite_details' r.id %}">
+                                    <span class="material-icons-sharp"> open_in_new</span>
+                                  </a>
+
+
+                                {%endif%}
+                            </td>
+                        </tr>
+                        {%endfor%}
+                       
+                    
+
+                        
+                    </tbody>
+                </div>
+                </table>
+                <div class="pagination">
+    <span class="step-links">
+        {% if data.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ data.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+        </span>
+
+        {% if data.has_next %}
+            <a href="?page={{ data.next_page_number }}">next</a>
+            <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
 </div>
-<!--------------- END OF INSIGHTS ------------>
-
-<div class="bottom consultations">
-    <h2>All Consultations</h2>
-    <div class="card">
-        <table>
-            <thead>
-                <tr>
-                    <th>Patient Name</th>
-                    <th>Phone Number</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for r in data %}
-                <tr>
-                    <td>
-                        <a class="patient-name" href="./patient_profile_public.html">
-                            {% if visite_seek %}{{r.patient_id.person_id.prenom}}
-                            {{r.patient_id.person_id.prenom}}{%elif get_patient%} {{ r.person_id.nom }} {%endif%}
-                        </a>
-                    </td>
-                    <td> {% if visite_seek %} {{r.patient_id.person_id.phone}}
-                        {% elif get_patient %}{{r.person_id.phone}}{%endif%}</td>
-                    <td>{% if visite_seek %}{{r.date_created|date:"D d M Y" }}{{r.visites.first.date_created}}{% elif get_patient %}
-                        {{r.visites.first.date_created|date:"D d M Y"}}{%endif%} </td>
-                    <td>{% if visite_seek %}{{r.date_created|time:"H:i" }}{% elif get_patient %}
-                        {{r.visites.first.date_created|date:"H:i"}} {%endif%} </td>
-                    <td class="primary">
-                        <a class="see-detils-btn" href=" {% url 'doctor:get_visite_details' r.id %}">
-                            <span class="material-icons-sharp"> open_in_new</span>
-                        </a>
-                    </td>
-                </tr>
-                {%endfor%}
-
-
-
-
-            </tbody>
-        </table>
-    </div>
-
-</div>
+            </div>
+            
 
 {% endblock content %}

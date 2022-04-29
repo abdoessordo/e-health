@@ -372,7 +372,6 @@ main .insights>div.profile .rigth {
     font-size: 2rem;
     float: right;
 }
-
 main .insights>div.profile .rigth .info {
     padding-left: 1.8rem;
     margin-top: 1.8rem;
@@ -505,7 +504,6 @@ main .insights.settings>div form .form-row button {
 main .insights.settings>div form .form-row h4 {
     text-align: center;
 }
-
 main .insights.settings>div form .form-row:last-child {
     margin-bottom: 0;
 }
@@ -541,20 +539,16 @@ main form.add-form .form-row>div *:last-child {
 main form.add-form .form-row h4 {
     text-align: center;
 }
-
 main form.add-form .form-row:last-child {
     margin-bottom: 0;
 }
-
 main form.add-form .form-row div:last-child {
     justify-content: center;
     color: red;
+    cursor: pointer;
     border: none;
 }
 
-main form.add-form .form-row div:last-child span {
-    cursor: pointer;
-}
 
 main form.add-form .add-more-btn,
 .submit-btn-holder .submit-btn,
@@ -585,7 +579,7 @@ main form.add-form button {
 .submit-btn-holder {
     position: absolute;
     bottom: 5rem;
-    right: 3rem;
+    right: 1rem;
 }
 
 main form.user-settings .submit-btn {
@@ -625,7 +619,6 @@ main .insights.settings .section-1 .privacy-settings .row .description .text-mut
 main .insights.settings .section-1 .privacy-settings .row {
     margin-bottom: 0;
 }
-
 main .insights.settings .section-1 .privacy-settings .row>label {
     margin: auto 0;
     margin-left: auto;
@@ -694,7 +687,6 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-
 /* end switch  */
 
 
@@ -1008,7 +1000,7 @@ main table tbody tr:last-child td {
     main form#form-med .form-row {
         gap: 1rem;
         grid-template-columns: 10rem 8rem auto 3rem;
-    }
+        }
 
     main #form-holder-trait.card,
     main #form-holder-med.card {
@@ -1160,7 +1152,7 @@ main table tbody tr:last-child td {
         font-size: 2rem;
     }
 
-    .rigth #become-doctor {
+    .rigth #become-doctor{
         margin-top: -3rem;
     }
 
@@ -1168,10 +1160,36 @@ main table tbody tr:last-child td {
         top: 4rem
     }
 
-    .submit-btn-holder {
+    .submit-btn-holder{
         position: relative;
         right: unset;
         bottom: unset;
         margin-top: 3rem;
     }
+}
+/*        AJAX               */
+main form.add-form .form-row>div{
+    border-bottom: 0;
+    justify-content: start;
+    }
+.form-row > div > input,.form-row > div > textarea{
+    border-bottom: 1px solid var(--color-light);
+}
+
+.ajax-primary{
+
+    padding-top: 0.5rem !important;
+}
+.input-ajax{
+    padding-top:  2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+.ajax_option{
+    padding: 5px !important;
+}
+.select-ajax{
+    overflow-y: auto;
+    padding: 0px !important;
+
 }

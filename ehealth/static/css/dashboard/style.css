@@ -67,6 +67,7 @@ form button {
     overflow-x: hidden;
     color: var(--color-dark);
     font-weight: 500;
+    width: 100%;
 }
 
 table {
@@ -88,6 +89,10 @@ body {
     user-select: none;
     overflow-x: hidden;
     color: var(--color-dark);
+}
+
+label {
+    font-weight: 700;
 }
 
 .container {
@@ -317,6 +322,10 @@ main .card {
     transition: all 300ms ease;
 }
 
+main .card#form-search-doc {
+    margin-top: 3rem;
+}
+
 main .insights>.card {
     background: var(--color-white);
     padding: var(--card-padding);
@@ -346,6 +355,20 @@ main .insights>.card:nth-child(3) span {
     background: var(--color-success);
 }
 
+main .insights>.card .middle {
+    display: flex;
+    flex-direction: column;
+}
+
+main .insights>.card .middle a {
+    display: flex;
+    align-items: center;
+}
+
+main .insights>.card .middle a *:last-child {
+    padding-left: 1.5rem;
+}
+
 
 main .insights.dashboard>.card:last-child,
 main .insights.insurances>.card:last-child {
@@ -367,12 +390,120 @@ main .insights h3 {
     font-size: 1rem;
 }
 
+main .insights h4 {
+    margin: 1rem 0 0.6rem;
+}
+
 
 main .insights small {
     display: block;
     margin-top: 1.3rem;
 }
 
+
+/* ====================================================
+===================== RESULTS CONTAINER ===============
+======================================================= */
+
+main .doctor-card.card {
+    display: grid;
+    grid-template-columns: 12rem auto 20rem;
+    gap: 4rem;
+}
+
+main .doctor-card.card .photo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* padding-bottom: 1rem; */
+    align-items: center;
+    justify-content: center;
+}
+
+main .doctor-card.card .profile-photo {
+    width: 10rem;
+    height: 10rem;
+}
+
+main .doctor-card.card .doc-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+main .doctor-card.card .doc-description .doctor-name {
+    display: flex;
+    align-items: center;
+}
+
+main .doctor-card.card .doc-description .doctor-name span {
+    margin-left: 1rem;
+}
+
+main .doctor-card.card .doc-description .speciality {
+    margin-top: 1rem;
+}
+
+main .doctor-card.card .doc-description .rating {
+    display: flex;
+    align-items: center;
+}
+
+main .doctor-card.card .doc-description .rating h3 {
+    padding-bottom: 0.2rem;
+    padding-left: 0.5rem;
+}
+
+main .doctor-card.card .doc-description .rating-container {
+    color: #f4c150;
+}
+
+main .doctor-card.card .doc-payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .doctor-card.card .doc-payment .details .text-muted>div {
+    display: flex;
+    align-items: center;
+}
+
+main .doctor-card.card .doc-payment .details .text-muted>div h3 {
+    padding-left: 0.5rem;
+    font-weight: 500;
+}
+
+main .doctor-card.card .doc-payment .buttons a div {
+    align-items: center;
+    padding: calc(0.5 * var(--card-padding));
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem auto;
+    transition: all 300ms ease;
+}
+
+main .doctor-card.card .doc-payment .buttons a div:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+main .doctor-card.card .doc-payment .buttons a:last-child div {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+
+.but1 {
+    background: transparent !important;
+    color: var(--color-primary) !important;
+}
 
 /* ====================================================
 ====================== BOTTON =========================
@@ -439,6 +570,95 @@ main table tbody tr.active td:last-child span {
     color: white;
 }
 
+main form.add-form .form-row {
+    display: grid;
+    gap: 5rem;
+    user-select: none;
+    margin-bottom: 3rem;
+}
+
+main form#form-med .form-row {
+    grid-template-columns: 12rem 10rem auto 5rem;
+}
+
+main form#search-doc .form-row {
+    grid-template-columns: 12rem auto 5rem;
+}
+
+
+
+
+main form.add-form .form-row div.row-elemnt {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-light);
+}
+
+main form.add-form .form-row>div *:last-child {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+main .card form#search-doc span {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    color: var(--color-primary);
+    cursor: default;
+}
+
+main form.add-form button {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+main form#search-doc.add-form .form-row>div small {
+    cursor: default;
+    padding-left: 0;
+}
+
+main form.add-form .form-row:last-child {
+    margin-bottom: 0;
+}
+
+main form.add-form .add-more-btn,
+.submit-btn-holder .submit-btn,
+main form.add-form button .submit-btn {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: calc(0.5 * var(--card-padding));
+    margin-top: 2rem;
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.submit-btn-holder .submit-btn,
+main form.add-form button .submit-btn {
+    border: 2px solid var(--color-primary);
+    margin: 0 auto;
+}
+
+main form.add-form .add-more-btn:hover,
+main form.add-form .submit-btn:hover {
+    padding: calc(0.5 * var(--card-padding)) calc(2 * var(--card-padding));
+}
+
+main form.add-form .form-row div:last-child {
+    justify-content: center;
+    color: red;
+    cursor: pointer;
+    border: none;
+}
+
+main form#search-doc .submit-btn {
+    float: left;
+}
 
 /* ====================================================
 ====================== RIGTH ==========================
@@ -663,25 +883,27 @@ main table tbody tr.active td:last-child span {
 
 
 /* ========== SAMLL LAPTOPS AND TABLETS ========== */
+@media screen and (max-width:1465px) {
+    main .doctor-card.card {
+        grid-template-columns: 10rem auto 13rem;
+    }
+
+}
 
 @media screen and (max-width:1200px) {
     .container {
         width: 94%;
         grid-template-columns: 7rem auto 20rem;
     }
-
     aside .logo h2 {
         display: none;
     }
-
     aside .sidebar h3 {
         display: none;
     }
-
     aside .sidebar a {
         width: 5.6rem;
     }
-
     aside .sidebar a:last-child {
         position: relative;
         margin-top: 1.8rem;
@@ -709,11 +931,14 @@ main table tbody tr.active td:last-child span {
         left: 50%;
         transform: translate(-50%, 20%);
         padding-bottom: 3rem;
-    }
+        }
 
-    .drop-down-content {
+        .drop-down-content {
         right: 1rem;
     }
+main .results-container {
+    position: absolute;
+}
 }
 
 
@@ -724,7 +949,6 @@ main table tbody tr.active td:last-child span {
         width: 100%;
         grid-template-columns: 1fr;
     }
-
     aside {
         position: fixed;
         left: -100%;
@@ -743,39 +967,31 @@ main table tbody tr.active td:last-child span {
             left: 0;
         }
     }
-
     aside .logo {
         margin-left: 1rem;
     }
-
     aside .logo h2 {
         display: inline;
     }
-
     aside .sidebar h3 {
         display: inline;
     }
-
     aside .sidebar a {
         width: 100%;
         height: 3.4rem;
     }
-
     aside .sidebar a:last-child {
         position: absolute;
         bottom: 5rem;
     }
-
     aside .close {
         display: inline-block;
         cursor: pointer;
     }
-
     main {
         margin-top: 8rem;
         padding: 0 1rem;
     }
-
     main .bottom {
         position: relative;
         margin-top: 3rem;
@@ -783,12 +999,10 @@ main table tbody tr.active td:last-child span {
         transform: translateX(-50%);
 
     }
-
     main .bottom table {
         width: 100%;
         margin: 0;
     }
-
     main .bottom table#insurances tbody tr>td:nth-child(3),
     main .bottom table#insurances thead tr>th:nth-child(3) {
         display: none;
@@ -803,12 +1017,10 @@ main table tbody tr.active td:last-child span {
     main .bottom table#insurances thead tr>th:last-child {
         display: block;
     }
-
     .rigth {
         width: 94%;
         margin: 0 auto 4rem;
     }
-
     .rigth .top {
         position: fixed;
         top: 0;
@@ -822,21 +1034,17 @@ main table tbody tr.active td:last-child span {
         z-index: 2;
         box-shadow: 0 1rem 1rem var(--color-light);
     }
-
     .rigth .top .theme-toggler {
         width: 4.4rem;
         position: absolute;
         left: 4rem;
     }
-
-    .rigth .top .profile {
+.rigth .top .profile {
         align-items: center;
     }
-
     .rigth .top .profile .info p {
         display: none;
     }
-
     .rigth .top button {
         display: inline-block;
         background: transparent;
@@ -845,12 +1053,22 @@ main table tbody tr.active td:last-child span {
         position: absolute;
         left: 1rem
     }
-
     .rigth .top button span {
         font-size: 2rem;
     }
-
     .drop-down-content {
-        top: 4rem
+    top: 4rem
+    }
+     main .doctor-card.card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main .results-container{
+        position: relative;
+    }
+
+    main .doctor-card.card .doc-payment{
+        margin-top: -2rem;
     }
 }

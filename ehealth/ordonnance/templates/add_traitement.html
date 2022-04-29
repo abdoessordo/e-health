@@ -2,39 +2,39 @@
 {% load static %}
 
 {% block content %}
-            <div class="container ">
-                <div class="ordanance-form-section ">
-                    <h2 class="ordanance-form-title">Traitement</h2>
-                    <form class="ps-3" action="" method="POST" >
+            <div class="card" id="form-holder-trait">
+                <form class="add-form" id="form-trait" action="" method="POST">
+                    <div class="rows">
                         {% csrf_token %}
-                        <div class="all_trait" id="trait-form">
-                            <div class="row" id="row-1">
-                                <div class="col-4">
-                                    <label>Nom Traitement</label>
-                        }
-            <input type="text" name="traitements" class="form-control" placeholder="Enter traitement">
-                                </div>
-                                
-                                <div class="col-7">
-                                    <label>Description du Traitement</label>
-            <textarea class="form-control"  name="desc" rows="1"></textarea>
-                                </div>
+                        <div class="form-row" id="row-1">
+                            <div>
+                                <label for="">Traitement</label>
+                                <input class="primary" type="text" name="traitements" placeholder="Enter Traitement">
+                            </div>
 
-                                <div class="col-1 d-flex flex-column justify-content-center">
-                                    <div class="remove-item" id="remove_btn-1" onclick="remove_row(this.id)">
-                                        <i class="fa-solid fa-trash-can fa-xl"></i>
-                                    </div>
-                                </div>
-                            </div>  
+                            <div>
+                                <label for="">Traitement Description</label>
+                                <textarea class="primary" rows="1" name="desc"placeholder="Enter Descpritption"></textarea>
+                            </div>
+
+                            <div>
+                                <span id="delete-row-1" onclick=delete_row(this.id)
+                                    class="material-icons-sharp">delete</span>
+                            </div>
                         </div>
-                        
-                    <button type="button" class="btn btn-primary mt-2" id="add_btn_trait">Add More</button>
-                    <br>
-                    <center>
-                        <button type="submit" class="btn btn-primary">Submit</button>                        
-                    </center>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="add-more-btn" id="add_btn_med"  type_btn="trait" >
+                        <span class="material-icons-sharp" type_btn="trait">add</span>
+                        <h3 type_btn="trait">Add More</h3>
+                    </div>
+
+                    <button type="submit">
+                        <div class="submit-btn">
+                            <h3>Submit</h3>
+                        </div>
+                    </button>
+                </form>
             </div>
 
          {% endblock %}

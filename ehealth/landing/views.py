@@ -6,6 +6,8 @@ from doctor.models import Doctor
 from pharmacie.models import Pharmacie
 from patient.models import Patient
 import logging
+from django.views.decorators.http import require_POST
+from  django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 def re_redirect(request,loginp):
 
@@ -13,22 +15,26 @@ def re_redirect(request,loginp):
 				request.session["role"]="patient"
 				try:
 					request.user.person.patient.id is not None
-					return redirect("patient:visites")
+					return redirect("patient:dashboard")
 				except :
 					return redirect("patient:register")
 			elif loginp==2:
 				request.session["role"]="medecin"
 				try:
 					request.user.person.doctor.INP is not None
-					return redirect("doctor:visites")
+					return redirect("doctor:dashboard")
 				except :
 					return redirect("doctor:register")
 				
 
 			elif loginp==3:
 				request.session["role"]="pharmacist"
-				pass
-				#return redirect("pharmacist:register")
+				
+				try:
+					request.user.person.pharmacie.INP is not None
+					return redirect("pharmacist:dashboard")
+				except :
+					return redirect("pharmacist:register")
 			else:
 				logging.warning(loginp,type(loginp))
 
@@ -104,4 +110,21 @@ def register_user(request):
 				return render(request, 'landing/register.html', {})
 	else:
 		return render(request, 'landing/register.html', {})
+
+@require_POST
+def profile_register(request):
+		# try:
+			
+			adresse=request.POST["adresse"]
+			ville=request.POST["ville"]
+			phone=request.POST["phone"]
+			request.user.person.ville=ville
+			request.user.person.adresse=adresse
+			request.user.person.phone=phone
+			request.user.person.save()
+			messages.add_message(request,messages.SUCCESS,"Values Updated")
+			return JsonResponse({"data":"Done"})
+		# except :
+		#  		messages.add_message(request, messages.ERROR, 'Something is Wrong')
+		#  		return JsonResponse({"data":"Error"})
 

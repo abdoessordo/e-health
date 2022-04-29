@@ -8,5 +8,7 @@ urlpatterns=[
 	path("visite/<int:visite>/",views.get_visite_details,name="get_visite_details"),
 	path("dashboard",views.dashboard,name="dashboard"),
 	path("doctors",views.get_doc,name="doctors"),
-	path("profile/<int:pk>",views.profile,name="profile")
+	path("profile/<int:pk>",views.profile,name="profile"),
+	path("visites/<int:pk>",views.get_other_visites_history,name="others_visite"),
+	path("presc/<int:pk>",views.get_other_presc,name="others_presc")
 ]

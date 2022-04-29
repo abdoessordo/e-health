@@ -30,7 +30,7 @@
                     <span class="material-icons-sharp">phone_in_talk</span>
                     <div class="middle">
                         <h3>{% if doctor %}Phone Calls{% elif patient %} Insurances {% elif pharmacist %} Total Expenses{% endif %}</h3>
-                        <h1>356</h1>
+                        <h1>{% if patient %} {{insurances.total}} {%endif%}</h1>
                     </div>
                     <small class="text-muted">
                         Last Week

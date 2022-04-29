@@ -4,7 +4,7 @@ from .models import AllMutuelle
 
 
 def all_mutuelles(request):
-    query_set = AllMutuelle.objects.all()
+    query_set = AllMutuelle.objects.filter(patient_id=request.user.person.patient)
     total = AllMutuelle.objects.aggregate(total=Count("id"))
     pending = AllMutuelle.objects.filter(
         mutuelle_status__exact="P").aggregate(pending=Count('id'))

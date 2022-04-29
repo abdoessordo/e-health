@@ -12,5 +12,4 @@ class Patient(models.Model):
 	immatriculation=models.IntegerField(null=True)
 	date_adhesion=models.DateField( null=True)
 	n_affiliation=models.IntegerField(null=True)
-
  

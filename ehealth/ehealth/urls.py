@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from patient import views
 
 urlpatterns = [
     path('',include("landing.urls")),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('pharmacie/', include('pharmacie.urls')),
     path('ordonnance/', include('ordonnance.urls')),
     path('mutuelle/', include('mutuelle.urls')),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

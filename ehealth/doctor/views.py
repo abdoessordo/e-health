@@ -7,6 +7,7 @@ from django.core import serializers
 from django.views.decorators.http import require_POST
 from  django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator
 import logging
 import datetime
 def register(request):
@@ -79,7 +80,10 @@ def get_doc_visites_history(request):
 		filt=datetime.date.today()-datetime.timedelta(days=7)
 		pat = Visite.objects.filter( medcin_id=doctor.INP,date_created__gte=filt).order_by("-date_created")
 		pats=Patient.objects.filter(id__in=pat.values_list("patient_id"))
-		return render(request,"doctor/visites.html",{"doctor":True, "data":visites,"dist_pat":len(pats),"num_visite":len(pat),'visite_seek':True,"title":"Consultations"})
+		paginator=Paginator(visites, 25)
+		page_number = request.GET.get('page')
+		page_obj = paginator.get_page(page_number)
+		return render(request,"doctor/visites.html",{"doctor":True, "data":page_obj,"dist_pat":len(pats),"num_visite":len(pat),'visite_seek':True,"title":"Consultations"})
 	else:
 		return render(request,"ehealth/error.html",{"doctor":True,'visite_seek':True,})
 
@@ -123,13 +127,17 @@ def dashboard(request):
 	return render(request,"doctor/dashboard.html",{"dashboard":True,"doctor":True,"visites":visites,"title":"Dashoard","dist_pat":len(pat),"last_3":pat2})
 def get_patient(request):
 	doctor=request.user.person.doctor
-	pat = Visite.objects.filter( medcin_id=doctor.INP).order_by("-date_created").values("patient_id").distinct()
-	pat=Patient.objects.filter(id__in=pat)
-	filt=datetime.date.today()-datetime.timedelta(days=7)
+	if doctor.activated:
+		pat = Visite.objects.filter( medcin_id=doctor.INP).order_by("-date_created").values("patient_id").distinct()
+		pat=Patient.objects.filter(id__in=pat)
+		filt=datetime.date.today()-datetime.timedelta(days=7)
 
-	pat_len=Visite.objects.filter( medcin_id=doctor.INP,date_created__gte=filt).order_by("-date_created")
+		pat_len=Visite.objects.filter( medcin_id=doctor.INP,date_created__gte=filt).order_by("-date_created")
 
-	return render(request,"doctor/visites.html",{"num_visite":len(pat_len),"doctor":True,"data":pat,"title":"Patients","dist_pat":len(pat),"get_patient":True})
+		return render(request,"doctor/visites.html",{"num_visite":len(pat_len),"doctor":True,"data":pat,"title":"Patients","dist_pat":len(pat),"get_patient":True})
+	else:
+		return render(request,"ehealth/error.html",{"doctor":True,'get_patient':True,})
+
 def fill(request):
 	import sqlite3
 	db=sqlite3.connect("meds.db")
