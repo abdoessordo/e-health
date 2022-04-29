@@ -1,3 +1,4 @@
 .idea/
 __pycache__/
-ehealth/db.sqlite3
+Pipfile
+Pipfile.lock
