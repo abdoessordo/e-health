@@ -9,3 +9,4 @@ ehealth/patient/migrations/*
 ehealth/pharmacie/migrations/*
 ehealth/meds.db
 ehealth/db.sqlite3
+ehealth/patient/names.txt
