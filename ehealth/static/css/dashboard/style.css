@@ -136,14 +136,6 @@ h5 {
 small {
     font-size: 0.75rem;
 }
-
-.profile-photo {
-    width: 2.8rem;
-    height: 2.8rem;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
 .text-muted {
     color: var(--color-info-dark);
 }
@@ -172,6 +164,12 @@ b {
     color: var(--color-warning);
 }
 
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
 aside {
     height: 100vh;
 }
@@ -199,6 +197,10 @@ aside .close {
 
 .flip_180 {
     transform: rotate(180deg);
+}
+
+.hide {
+    display: none;
 }
 
 
@@ -506,7 +508,7 @@ main .doctor-card.card .doc-payment .buttons a:last-child div {
 }
 
 /* ====================================================
-====================== BOTTON =========================
+======================BOTTOM=========================
 ======================================================= */
 
 main .bottom {
@@ -518,6 +520,7 @@ main .bottom {
 main .bottom h2 {
     margin-bottom: 0.8rem;
 }
+
 
 main .bottom table {
     background: var(--color-white);
@@ -865,6 +868,15 @@ main form#search-doc .submit-btn {
     cursor: pointer;
 }
 
+ .section-4 .add-new>div {
+     display: flex;
+ }
+
+
+ .section-4 .add-new h3 {
+     margin: 0;
+ }
+
 
 .show-all-btn {
     text-align: center;
@@ -878,6 +890,267 @@ main form#search-doc .submit-btn {
 
 
 /* ====================================================
+==================== CALANDAR ====================
+======================================================= */
+.booking-dashboard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40% auto;
+    gap: 1rem;
+}
+
+.booking-dashboard .booking-form {
+    /* width: 70%; */
+    position: relative;
+}
+
+.booking-dashboard .booking-form form {
+    margin-top: 4rem;
+
+}
+
+.booking-dashboard .booking-form .form-row {
+    display: grid;
+    grid-template-columns: 15rem 12rem;
+    margin-bottom: 2rem;
+    gap: 5rem;
+}
+
+.booking-dashboard .booking-form .form-row input {
+    color: var(--color-primary);
+}
+
+.booking-dashboard .booking-form .form-row input[type="date"]::-webkit-inner-spin-button,
+.booking-dashboard .booking-form .form-row input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* .booking-dashboard .booking-form form div.form-row:nth-child(3) {
+    margin-bottom: 0;
+} */
+
+.booking-dashboard .booking-form .submit-btn-holder {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+.booking-dashboard .booking-form .submit-btn-holder .submit-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.calendar {
+    height: max-content;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    color: var(--color-dark);
+}
+
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-body {
+    padding: 1rem;
+    border-bottom: 0.1rem solid #36394915;
+}
+
+.calendar-week-day {
+    height: 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    place-items: center;
+}
+
+.calendar-week-day div {
+    display: grid;
+    place-items: center;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    color: var(--color-dark);
+}
+
+.selected-day {
+    background-color: var(--color-info-light);
+    color: var(--color-dark);
+    border: 2px solid var(--color-dark);
+}
+
+.calendar-days div {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+}
+
+.calendar-days div span {
+    position: absolute;
+}
+
+.calendar-days div:hover span {
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+
+.calendar-days div.curr-date,
+.calendar-days div.curr-date:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+}
+
+.calendar-day-hover:hover {
+    border: 2px solid var(--color-dark)
+}
+
+.calendar-days div.curr-date span {
+    display: none;
+}
+
+.month-picker {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+}
+
+.month-picker:hover {
+    background-color: var(--color-hover);
+}
+
+.year-picker {
+    display: flex;
+    align-items: center;
+}
+
+.year-change {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.year-change:hover {
+    background-color: var(--color-hover);
+}
+
+.calendar-time {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2rem;
+    justify-items: stretch;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.calendar-time .interval {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+    color: #7380ec75;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+
+
+.calendar-time .interval .check {
+    display: flex;
+    background-color: #7380ec75;
+    border-radius: 50%;
+    color: var(--color-white);
+    place-items: center;
+    padding: 0.25rem;
+}
+
+.calendar .interval h4.text-muted {
+    color: #7380ec75;
+}
+
+.calendar-time .interval.active h4,
+.calendar-time .interval.active h3 {
+    color: var(--color-primary) !important;
+}
+
+.calendar-time .interval.active .check {
+    background-color: var(--color-primary) !important;
+}
+
+
+
+.month-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--color-white);
+    padding: 20px;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    display: grid;
+    transform: scale(1.5);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.month-list.show {
+    transform: scale(1);
+    visibility: visible;
+    pointer-events: visible;
+    transition: all 0.2s ease-in-out;
+}
+
+.month-list>div {
+    display: grid;
+    place-items: center;
+}
+
+.month-list>div>div {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.month-list>div>div:hover {
+    background-color: var(--color-hover);
+}
+
+@keyframes to-top {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ====================================================
 ==================== MEDIA QUERIES ====================
 ======================================================= */
 
@@ -888,6 +1161,14 @@ main form#search-doc .submit-btn {
         grid-template-columns: 10rem auto 13rem;
     }
 
+    .booking-dashboard .booking-form .form-row {
+        gap: 1rem;
+        grid-template-columns: 10rem 10rem;
+    }
+
+    .booking-dashboard {
+        grid-template-columns: 50% 50%;
+    }
 }
 
 @media screen and (max-width:1200px) {
@@ -936,9 +1217,14 @@ main form#search-doc .submit-btn {
         .drop-down-content {
         right: 1rem;
     }
-main .results-container {
-    position: absolute;
+main .booking-dashboard .calendar.card {
+    width: 80%;
 }
+    main .results-container {
+        position: absolute;
+    }
+
+
 }
 
 
@@ -990,7 +1276,7 @@ main .results-container {
     }
     main {
         margin-top: 8rem;
-        padding: 0 1rem;
+        /* padding: 0 1rem; */
     }
     main .bottom {
         position: relative;
@@ -1071,4 +1357,17 @@ main .results-container {
     main .doctor-card.card .doc-payment{
         margin-top: -2rem;
     }
-}
+    .booking-dashboard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        }
+    main .booking-dashboard .calendar.card {
+        width: 100%;
+    }
+
+    .booking-dashboard .booking-form .submit-btn-holder {
+        position: relative;
+        margin-top: 3rem;
+    }
+    }

@@ -15,6 +15,7 @@ class Person(models.Model):
 	datedenaissance = models.DateField()
 	sexe=models.CharField(max_length=1,choices=Gender.choices)
 	
-	phone=models.IntegerField(null=True,unique=True)
+	phone=models.CharField(null=True,unique=True,max_length=10)
 
 	img=models.ImageField(upload_to="profile_pics", max_length=100,null=True,default="profile_pics/default.png")
+	

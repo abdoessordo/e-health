@@ -34,6 +34,11 @@
             <span class="material-icons-sharp">health_and_safety</span>
             <h3>Insurances</h3>
         </a>
+         <a href="{% url 'patient:search' %}"
+            class="{% if book %} active {%endif%}">
+            <span class="material-icons-sharp">health_and_safety</span>
+            <h3>Book Appointement</h3>
+        </a>
                 {% endif %}
                 <a href="{% if doctor %}#{% elif patient %} # {% elif pharmacist %} #{% endif %}">
                     <span class="material-icons-sharp">mail_outline</span>
@@ -48,7 +53,7 @@
                     <span class="material-icons-sharp">manage_accounts</span>
                     <h3>Settings</h3>
                 </a>
-                <a href="./index.html">
+                <a href="{% url 'landing:logout'%}">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Logout</h3>
                 </a>

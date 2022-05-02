@@ -66,11 +66,12 @@ def add_medicaments(request,visite):
 		a_mutuelle=patient.a_mutuelle
 		#types=params.getlist("type")
 		meds=params.getlist("med")
+		logging.warning(meds)
 		desc=params.getlist("desc")
 		quantite=params.getlist("quant")
 		num=len(quantite)
 		for i in range(num):
-			if len(id_medicament[i])==0:continue
+			if len(meds[i])==0:continue
 			med=Meds.objects.get(code=meds[i])
 			#phar=Pharmacie.objects.get(pk=id_pharmacie)
 			p=Ordonnance(id_visite=visite,le_type="Medicaments",
@@ -95,13 +96,14 @@ def add_traitement(request,visite):
 		#types=params.getlist("type")
 		traitement=params.getlist("traitements")
 		desc=params.getlist("desc")
+		prices=params.getlist("price")
 		num=len(desc)
 		for i in range(num):
 			#med=Medicament.objects.get(pk=1)
 			#phar=Pharmacie.objects.get(pk=id_pharmacie)
 			if len(traitement[i])==0	:continue
 			p=Ordonnance(id_visite=visite,le_type="Traitement",
-				description_de_traitement=desc[i],a_mutuelle=a_mutuelle,nom_traitement=traitement[i]
+				description_de_traitement=desc[i],a_mutuelle=a_mutuelle,nom_traitement=traitement[i],price=prices[i]
 				)
 			p.save()
 		data={"Done":"traitement created"}

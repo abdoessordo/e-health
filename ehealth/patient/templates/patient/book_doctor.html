@@ -1,0 +1,221 @@
+{%extends "ehealth/base.html" %}
+{%load static %}
+{% block content %}
+
+
+           
+      
+ 
+      
+            <div class="results-container">
+                <div class="doctor-card card">
+                    <div class="photo-container">
+                        <div class="profile-photo">
+                            <img src="{{doc.person_id.img.url}}" alt="">
+                        </div>
+                    </div>
+    
+                    <div class="doc-description">
+                        <div class="doctor-name">
+                            <h2>Dr. {{doc.person_id.nom}} {{doc.person_id.prenom}}</h2>
+                            <span class="material-icons-sharp primary">
+                                verified
+                            </span>
+                        </div>
+                        <small class="text-muted">MDS - Periodontology and Oral Implantology, BDS </small>
+                        <div class="speciality">
+                            <h4 class=" primary">{{doc.speciality}}</h4>
+                        </div>
+                        <div class="rating">
+                            <div class="rating-container">
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star_border
+                                </span>
+                            </div>
+                            <h3>4.5(84)</h3>
+                        </div>
+    
+                    </div>
+    
+                    <div class="doc-payment">
+                        <div class="details">
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-round">
+                                        calendar_today
+                                    </span>
+                                    <h3>Available on Fri, 20 Mar</h3>
+                                </div>
+                            </div>
+    
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-round">
+                                        location_on
+                                    </span>
+                                    <h3>{{doc.ville}}</h3>
+                                </div>
+                            </div>
+    
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-outlined">
+                                        payments
+                                    </span>
+                                    <h3>$300 - $1000</h3>
+                                </div>
+                            </div>
+                        </div>
+                        {%comment%}<div class="buttons">
+                            <a href="#">
+                                <div>
+                                    <h3>View Profile</h3>
+                                </div>
+                            </a>
+                            <a href="#" class="hide">
+                                <div>
+                                    <h3>Book Now</h3>
+                                </div>
+                            </a>
+                        </div>{%endcomment%}
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-dashboard">
+                <div class="calendar card">
+                    <div class="calendar-header">
+                        <h1 class="month-picker" id="month-picker">February</h1>
+                        <div class="year-picker">
+                            <span class="year-change" id="prev-year">
+                                <pre><</pre>
+                            </span>
+                            <h1 id="year">2021</h1>
+                            <span class="year-change" id="next-year">
+                                <pre>></pre>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="calendar-week-day">
+                            <h3>Sun</h3>
+                            <h3>Mon</h3>
+                            <h3>Tue</h3>
+                            <h3>Wed</h3>
+                            <h3>Thu</h3>
+                            <h3>Fri</h3>
+                            <h3>Sat</h3>
+                        </div>
+                        <div class="calendar-days"></div>
+                    </div>
+
+                    <div class="calendar-time">
+
+
+                        <div class="interval active">
+                            <div class="check">
+                                <span class="material-icons-sharp">
+                                    done
+                                </span>
+                            </div>
+                            <div>
+                                <h3>Matin</h3>
+                                <h4 class="text-muted">
+                                    09h - 12h
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="interval">
+                            <div class="check">
+                                <span class="material-icons-sharp">
+                                    done
+                                </span>
+                            </div>
+                            <div>
+                                <h3>Midi</h3>
+                                <h4 class="text-muted">
+                                    12h - 14h
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="interval">
+                            <div class="check">
+                                <span class="material-icons-sharp">
+                                    done
+                                </span>
+                            </div>
+                            <div>
+                                <h3>Apres-Midi</h3>
+                                <h4 class="text-muted">
+                                    14h - 17h
+                                </h4>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="month-list"></div>
+
+                </div>
+
+
+
+                <div class="booking-form card">
+                    <h1>Informations Summary</h1>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <label for="">Doctor</label>
+                            <input type="text" value="Dr. {{doc.person_id.nom}} {{doc.person_id.prenom}}" disabled>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="">City</label>
+                            <input type="text"  value="{{doc.ville}}" disabled>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="">Speciality</label>
+                            <input type="text" value="{{doc.speciality}}" disabled>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="">Appointment Date</label>
+                            <input type="date" name="date" id="appointement-date" required readonly>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="">Appointment Time</label>
+                            <input name="time" type="text" id="appointement-time" value="09h - 12h" required readonly>
+                        </div>
+
+
+                        <button class="submit-btn-holder" type="submit">
+                            <div class="submit-btn">
+                                <h3>Take Appointement</h3>
+                            </div>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+    
+
+{%endblock%}
+
+

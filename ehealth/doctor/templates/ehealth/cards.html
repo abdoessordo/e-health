@@ -18,7 +18,7 @@
                     <span class="material-icons-sharp">event</span>
                     <div class="middle">
                         <h3>{% if doctor %}Appointments{% elif patient %} Appointments {% elif pharmacist %} Total Sales{% endif %}</h3>
-                        <h1>56</h1>
+                        <h1>{% if doctor %}{{num_appt}} {% elif patient %} {{count_visites}} {% elif pharmacist %}  {% endif %}</h1>
                     </div>
                     <small class="text-muted">
                         {% if doctor %}Last Week{% elif patient %} All Time {% elif pharmacist %} Last Week{% endif %}

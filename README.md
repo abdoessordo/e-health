@@ -1,19 +1,20 @@
+AWALN LOGINS:
+	- Patient :  username BH123456 password az
+	- Doctor :  username BH12345 password az
+	- Pharmacien : pharmacie az
 
-# e-health
-* added db_connection file
-* Django
-	* django linked with db
-	* created django project ehealth
-	* created django app doctor
-	* created django app ordonnance
-	* created django app person
-	* created model Doctor
-	* created model ordonnace 
-	* created model normal_person
-	* created model 
-	* created methods:
-		- INSERT doctor/peson/ordonnance
-		- DELETE doctor/peson/ordonnance
-		- modify Doctor/peson/ordonnance
-		- modify persons files permissions 
+TODO:
+NKML SETTINGS DONE
+NKML APPOINTEMENTS DONE
+NKML Pharmacie dashboard 80%
+NGAD pagination	DONE
 
+NOTE:
+
+GA3 JS DYALNA INCOMPATIBLE M3A MOZILA FIREFOX WELCOME TO FRONT END
+
+
+ESSORDO TODO :
+- STYLE PAGINATION (check doctor's consultations)
+- pharmacie :  form to add price ...
+- ADD HERE

@@ -6,14 +6,27 @@ import datetime
 from django.views.decorators.http import require_POST
 from  django.http import HttpResponse, JsonResponse
 from django.contrib import messages
+from django.db.models.aggregates import Count,Sum
+import logging
 # Create your views here.
 def dashboard(request):
 	filt=datetime.date.today()-datetime.timedelta(days=7)
-	visites=Visite.objects.filter(id_pharmacie=request.user.person.pharmacie.pk,date_created__gte=filt)
-	patients=visites.values('patient_id').distinct()
-	ordonnances=Ordonnance.objects.filter(id_visite__in=visites)
-	tot=sum(ordonnances.values("prix"))
-	return render(request,"pharmacist/dashboard.html",{"dashboard":True,"pharmacist":True,"title":"Dashboard","pat_num":len(patients),"income":tot})
+	ordonnances=Ordonnance.objects.filter(
+		le_type="Medicaments",id_pharmacie=request.user.person.pharmacie.pk,date_purchase__gte=filt
+		).annotate(
+		count=Count("id_medicament"),prix=Sum("id_medicament__prix_br")
+		).order_by("-date_purchase").select_related("id_visite__patient_id")[:3]
+	
+	logging.warning(ordonnances[0].prix)
+	pat_num=Ordonnance.objects.filter(
+		le_type="Medicaments",id_pharmacie=request.user.person.pharmacie.pk,id_visite__date_created__gte=filt
+		).aggregate(
+		count=Count("id_visite__patient_id" ,distinct=True),
+		tot=Sum("id_medicament__prix_br")
+		)
+	
+	
+	return render(request,"pharmacist/dashboard.html",{"dashboard":True,"title":"Dashboard","pat_num":pat_num["count"],"income":pat_num["tot"],"ordonnances":ordonnances})
 
 def register(request):
 	if request.method=="POST":
@@ -29,8 +42,8 @@ def register(request):
 					)
 				messages.add_message(request,messages.SUCCESS,"Values Updated")
 				return JsonResponse({"data":"Done"})
-			except:
+			except Exception as e:
 					messages.add_message(request, messages.ERROR, 'Something is Wrong')
-					return JsonResponse({"data":"error"})
+					return JsonResponse({"data":str(e)})
 	else:
-			return render(request,"pharmacist/edit.html",{"profile_settings":True,"pharmacist":True,"title":"Settings & Privacy"})
+			return render(request,"patient/edit.html",{"profile_settings":True,"title":"Settings & Privacy"})

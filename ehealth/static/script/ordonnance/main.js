@@ -121,6 +121,10 @@ const create_row = (type, row_num) => {
                 <label for="">Traitement Description</label>
                     <textarea class="primary" rows="1" name="desc"placeholder="Enter Descpritption"></textarea>
             </div>
+            <div>
+                                <label for="">Traitement Price</label>
+                                <input class="primary" type="number" placeholder="Enter Price"></input>
+                            </div>
 
             <div>
                 <span id="delete-row-${row_num}" onclick=delete_row(this.id) class="material-icons-sharp">delete</span>
@@ -141,6 +145,7 @@ const delete_row = (id) => {
 
 
 const add_row = (event) => {
+    event = event || window.event; // for firefox
     type=event.target.getAttribute("type_btn")
     let new_row = create_row(type, i)
     let form_holder = document.querySelector(`#form-${type}>.rows`);

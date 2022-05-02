@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from patient.models import Patient
 from ordonnance.models import Ordonnance
-from doctor.models import Visite,Doctor
+from doctor.models import Visite,Doctor,Appointement
 from med.models import Meds
 from django.core import serializers
 from django.views.decorators.http import require_POST
@@ -10,19 +10,25 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 import logging
 import datetime
+from django.db.models.aggregates import Count
+
 def register(request):
 	if request.method=="POST":
 		params=request.POST
 		INP=params["INP"]
 		ville=params["ville"]
+		speciality=params["speciality"]
+		if INP=="" or ville=="" or ville=="":
+			return render(request,"patient/edit.html",{"profile_settings":True})
+
 		obj=Doctor.objects.update_or_create(
 			person_id=request.user.person,
-			defaults={"ville":ville,"INP":INP})
+			defaults={"ville":ville,"INP":INP,"speciality":speciality})
 		
 		
 		return  redirect("doctor:visites")
 	else:
-		return render(request,"doctor/edit.html",{"doctor":True,"profile_settings":True})
+		return render(request,"patient/edit.html",{"profile_settings":True})
 
 @require_POST
 @csrf_exempt
@@ -83,15 +89,14 @@ def get_doc_visites_history(request):
 		paginator=Paginator(visites, 25)
 		page_number = request.GET.get('page')
 		page_obj = paginator.get_page(page_number)
-		return render(request,"doctor/visites.html",{"doctor":True, "data":page_obj,"dist_pat":len(pats),"num_visite":len(pat),'visite_seek':True,"title":"Consultations"})
+		return render(request,"doctor/visites.html",{ "data":page_obj,"dist_pat":len(pats),"num_visite":len(pat),'visite_seek':True,"title":"Consultations"})
 	else:
-		return render(request,"ehealth/error.html",{"doctor":True,'visite_seek':True,})
+		return render(request,"ehealth/error.html",{'visite_seek':True,})
 
 def get_visite_details(request,visite):
 	visite=get_object_or_404( Visite,pk=visite)
 	traitements=Ordonnance.objects.filter(id_visite=visite,le_type="Traitement")
-	meds=Ordonnance.objects.filter(id_visite=visite,le_type="Medicaments")
-
+	meds=Ordonnance.objects.filter(id_visite=visite,le_type="Medicaments").prefetch_related("id_medicament")
 	privacy=visite.patient_id.permission_privacy
 	modifiable=True
 	
@@ -104,7 +109,7 @@ def get_visite_details(request,visite):
 	return render(request,"doctor/visite_details.html",{
 				"modifiable":modifiable,
 				"visite":visite,
-				"doctor":True,
+				"profile":True,
 				"traitements":traitements,
 				"meds":meds,
 
@@ -123,8 +128,11 @@ def dashboard(request):
 		pat2=pat.distinct()
 		pat=Patient.objects.filter(id__in=pat.values_list("patient_id"))
 		pat2=Patient.objects.filter(id__in=pat2.values_list("patient_id"))[:3]
+		visites=Appointement.objects.filter(medcin_id=request.user.person.doctor)[0:10]
+		appointements=Appointement.objects.filter(medcin_id=request.user.person.doctor,status="2")[0:3]
 
-	return render(request,"doctor/dashboard.html",{"dashboard":True,"doctor":True,"visites":visites,"title":"Dashoard","dist_pat":len(pat),"last_3":pat2})
+		num_appt=Appointement.objects.filter(medcin_id=request.user.person.doctor,status=2).aggregate(count=Count('id'))['count']
+	return render(request,"doctor/dashboard.html",{"num_appt":num_appt,"appointements":appointements,"dashboard":True,"visites":visites,"title":"Dashoard","dist_pat":len(pat),"last_3":pat2})
 def get_patient(request):
 	doctor=request.user.person.doctor
 	if doctor.activated:
@@ -133,10 +141,12 @@ def get_patient(request):
 		filt=datetime.date.today()-datetime.timedelta(days=7)
 
 		pat_len=Visite.objects.filter( medcin_id=doctor.INP,date_created__gte=filt).order_by("-date_created")
-
-		return render(request,"doctor/visites.html",{"num_visite":len(pat_len),"doctor":True,"data":pat,"title":"Patients","dist_pat":len(pat),"get_patient":True})
+		paginator=Paginator(pat, 25)
+		page_number = request.GET.get('page')
+		page_obj = paginator.get_page(page_number)
+		return render(request,"doctor/visites.html",{"num_visite":len(pat_len),"data":page_obj,"title":"Patients","dist_pat":len(pat),"get_patient":True})
 	else:
-		return render(request,"ehealth/error.html",{"doctor":True,'get_patient':True,})
+		return render(request,"ehealth/error.html",{'get_patient':True,})
 
 def fill(request):
 	import sqlite3

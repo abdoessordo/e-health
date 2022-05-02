@@ -1,4 +1,13 @@
-{%load static %}
+{% load static %}
+{% load alias %}
+{% if request.session.role == "patient" %}
+{% alias 1 as patient   %} 
+{% elif request.session.role == "medecin" %}
+{% alias 1 as doctor   %} 
+{% elif request.session.role == "pharmacist" %}
+{% alias 1 as pharmacist   %}
+
+{%endif%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +23,15 @@
     {%else%}
      <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
     {%endif%}
-    <!-- MATRIAL ICONS -->
+ <!-- MATRIAL ICONS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
+    
     <div class="container">
         {% include "ehealth/aside.html"%}
     	  <main>
@@ -75,6 +86,8 @@
     <script src="{% static 'script/ordonnance/main.js' %}"></script>
     {%elif  profile or profile_settings%}
      <script src="{% static 'script/profile_settings/script.js' %}"></script>
+     {%elif  book%}
+     <script src="{% static 'script/calendar/calendar.js' %}"></script>
     {%endif%}
 </body>
 

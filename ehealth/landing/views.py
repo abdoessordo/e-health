@@ -127,4 +127,17 @@ def profile_register(request):
 		# except :
 		#  		messages.add_message(request, messages.ERROR, 'Something is Wrong')
 		#  		return JsonResponse({"data":"Error"})
+@require_POST
+def changing_pic(request):
+	try: 
+		img=request.FILES["img"]
+		request.user.person.img=img
+		request.user.person.save()
+		return JsonResponse({"data":"Done"})
+	except Exception as e:
+		return JsonResponse({"data":str(e)})
+from django.contrib.auth import logout
 
+def logout_view(request):
+    logout(request)
+    return redirect('landing:index')

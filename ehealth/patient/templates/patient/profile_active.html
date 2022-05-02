@@ -6,8 +6,9 @@
                 <div class="card profile">
                     <div class="left">
                         <div class="big-profile-photo">
-                            <img src="./images/profile-1.jpg" alt="">
+                            <img src="{{patient.person_id.img.url}}" alt="">
                         </div>
+
                         <div class="middle">
 
                             <h2>{{patient.person_id.nom}} {{patient.person_id.prenom}}</h2>
@@ -16,11 +17,11 @@
                             <h3>Appointments</h3>
                             <div class="appoitements">
                                 <div class="past">
-                                    <h2>5</h2>
+                                    <h2>{{appointements_done.count}}</h2>
                                     <h3 class="text-muted">Past</h3>
                                 </div>
                                 <div class="future">
-                                    <h2>2</h2>
+                                    <h2>{{appointements_waiting.count}}</h2>
                                     <h3 class="text-muted">Upcoming</h3>
                                 </div>
                             </div>
@@ -81,23 +82,23 @@
                         <div class="section-1">
                             <h2>Recent Consultations</h2>
                             <div class="rows">
-                                {% if visites|length == 0 %}No records
-                                {%else%}
+                                
                                 {%for v in visites%}
                                 <div class="row">
                                     <div class="profile-photo">
-                                        <img src="./images/profile-2.jpg" alt="">
+                                        <img src="" alt="">
                                     </div>
                                     <div class="description">
-                                        <p><b>{{v.medcin_id.person.nom}} {{v.medcin_id.person.prenom}}</b> <br> {{v.date_created}}</p>
+                                        <p><b>{{v.medcin_id.person_id.nom}} {{v.medcin_id.person_id.prenom}}</b> <br> {{v.date_created}}</p>
                                     </div>
                                 </div>
+                                {%empty%} No records
                                 {%endfor%}
                                 
                           </div>
                         <a href="{% url 'patient:others_visite' patient.id %}" class="show-all-btn">Show All</a>
 
-                        {%endif%}
+                 
                     </div>
 
                 </div>
@@ -111,10 +112,10 @@
                                 {%for v in visites%}
                                 <div class="row">
                                     <div class="profile-photo">
-                                        <img src="./images/profile-2.jpg" alt="">
+                                        <img src="{{v.medcin_id.person_id.img.url}}" alt="">
                                     </div>
                                     <div class="description">
-                                        <p><b>{{v.medcin_id.person.nom}} {{v.medcin_id.person.prenom}}</b> <br> {{v.date_created}}</p>
+                                        <p><b>{{v.medcin_id.person_id.nom}} {{v.medcin_id.person_id.prenom}}</b> <br> {{v.date_created}}</p>
                                     </div>
                                 </div>
                                 {%endfor%}
@@ -133,9 +134,11 @@
                 <!--------------- END OF CARD 2 ------------>
             </div>
             <!--------------- END OF INSIGHTS ------------>
-
+</div>
             <div class="bottom">
-                <h2>Used Drugs</h2>
+                    <h2>Used Drugs</h2>
+                <div class="card">
+            
                 <table>
                     <thead>
                         <tr>
@@ -143,29 +146,31 @@
                             <th>dosage</th>
                             <th>presentation</th>
                             <th>Pack</th>
-                            <th>Form</th>
+                            <th>Prix</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {%if ords|length == 0%} No records
-                        {%else%}
-                        {%for ord in ords %}
+                        
+                        {%for ord in meds %}
                         <tr>
-                            <td>{{ord.id_medicament.nom}}</td>
-                            <td>{{ord.id_medicament.dosage1}}</td>
-                            <td>{{ord.id_medicament.dosage1}}</td>
+                            <td>{{ord.nom}}</td>
+                            <td>{{ord.dosage1}}</td>
+                            <td>{{ord.dosage1}}</td>
                           
-                            <td>{{ord.id_medicament.forme}}</td>
-                            <td>{{ord.id_medicament.prix_br}}</td>
+                            <td>{{ord.forme}}</td>
+                            <td>{{ord.prix_br}}</td>
                         </tr>
+                        {%empty%}
+                        No records
                         {%endfor%}
-                        {%endif%}
+                     
                         
 
                     </tbody>
                 </table>
             <a href="{% url 'patient:others_visite' patient.id %}" class="show-all-btn">Show All</a>
+           </div>
             </div>
         </main>
         <!--------------- END OF MAIN ------------>
@@ -175,22 +180,21 @@
                 <h2>Recent Prescriptions</h2>
 
                 <div class="rows">
-                          {% if zipped|length == 0 %}
-                    <div class="row">
-                    No records </div>
-                         {%else%}
-                         {% for ord,num in zipped %}
+                    {% for v in pres %}
                   
+                            <div class="row">
+                                <div class="profile-photo">
+                                    <img src="{{v.medcin_id.person_id.img.url}}" alt="">
+                                </div>
+                                <div class="description">
+                                    <p><b>{{v.medcin_id.person_id.nom}} {{v.medcin_id.person.prenom}}</b> <br>{{v.count}} On going</p>
+                                </div>
+                            </div>
+                    {%empty%}
                     <div class="row">
-                        <div class="profile-photo">
-                            <img src="{{ord.id_visite.medcin_id.person.img.url}}" alt="">
-                        </div>
-                        <div class="description">
-                            <p><b>{{ord.id_visite.medcin_id.person_id.nom}} {{ord.id_visite.medcin_id.person.prenom}}</b> <br>{{num}} On going</p>
-                        </div>
-                    </div>
+                                No records </div>
                     {%endfor%}
-                    {%endif  %}
+                    
 
                     
                 </div>

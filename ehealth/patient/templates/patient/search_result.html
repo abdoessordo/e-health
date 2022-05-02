@@ -1,0 +1,98 @@
+{%extends "ehealth/base.html" %}
+{%load static %}
+{% block content %}
+
+            <div class="results-container">
+                {%for doc in docs %}
+
+                <div class="doctor-card card">
+                    <div class="photo-container">
+                        <div class="profile-photo">
+                            <img src="{{doc.person_id.img.url}}" alt="">
+                        </div>
+                    </div>
+
+                    <div class="doc-description">
+                        <div class="doctor-name">
+                            <h2>Dr. {{doc.person_id.nom}} {{doc.person_id.prenom}}</h2>
+                            <span class="material-icons-sharp primary">
+                                verified
+                            </span>
+                        </div>
+                        <small class="text-muted">MDS - Periodontology and Oral Implantology, BDS </small>
+                        <div class="speciality">
+                            <h4 class=" primary">{{doc.speciality}}</h4>
+                        </div>
+                        <div class="rating">
+                            <div class="rating-container">
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star
+                                </span>
+                                <span class="material-icons-round">
+                                    star_border
+                                </span>
+                            </div>
+                            <h3>4.5(84)</h3>
+                        </div>
+
+                    </div>
+                       
+
+                  
+
+                    <div class="doc-payment">
+                        <div class="details">
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-round">
+                                        calendar_today
+                                    </span>
+                                    <h3>Available on Fri, 20 Mar</h3>
+                                </div>
+                            </div>
+
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-round">
+                                        location_on
+                                    </span>
+                                    <h3>{{doc.ville}}</h3>
+                                </div>
+                            </div>
+
+                            <div class="text-muted">
+                                <div>
+                                    <span class="material-icons-outlined">
+                                        payments
+                                    </span>
+                                    <h3>$300 - $1000</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                           
+                            <a href="{%url 'patient:book' doc.pk%}">
+                                <div>
+                                    <h3>Book Now</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            {%empty%} No results
+            {%endfor%}
+                 
+            </div>
+
+
+{%endblock%}

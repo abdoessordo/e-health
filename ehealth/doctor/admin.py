@@ -1,5 +1,5 @@
 from django.contrib import admin
-from doctor.models import Doctor,Visite
+from doctor.models import Doctor,Visite,Appointement
 class DoctorAdmin(admin.ModelAdmin):
 	list_display = ('INP','nom','prenom')
 	def nom(self, x):
@@ -12,5 +12,12 @@ class VisiteAdmin(admin.ModelAdmin):
 		return f"{x.medcin_id.person_id.nom} {x.medcin_id.person_id.prenom}"
 	def nom_pat(self, x):
 		return f"{x.patient_id.person_id.nom} {x.patient_id.person_id.prenom}"
+class AppointementAdmin(admin.ModelAdmin):
+	list_display = ('nom_doc','nom_pat','date',"heure","status")
+	def nom_doc(self, x):
+		return f"{x.medcin_id.person_id.nom} {x.medcin_id.person_id.prenom}"
+	def nom_pat(self, x):
+		return f"{x.patient_id.person_id.nom} {x.patient_id.person_id.prenom}"
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Visite, VisiteAdmin)
+admin.site.register(Appointement, AppointementAdmin)

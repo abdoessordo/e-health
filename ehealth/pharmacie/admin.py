@@ -1,3 +1,7 @@
 from django.contrib import admin
+from pharmacie.models import Pharmacie
 
-# Register your models here.
+class PharmacieAdmin(admin.ModelAdmin):
+    list_display = ("INP",'nom',"ville","activated")
+    
+admin.site.register(Pharmacie, PharmacieAdmin)

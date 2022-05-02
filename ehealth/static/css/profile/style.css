@@ -319,11 +319,15 @@ main .insights>div.profile {
 
 
 
-main .insights>div.profile .left {
+main .insights>div.profile.doctor .left {
     border-right: 1px solid var(--color-light);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+main .insights>div.profile .left {
+    justify-content: center;
 }
 
 main .insights>div.profile .left h2 {
@@ -372,6 +376,11 @@ main .insights>div.profile .rigth {
     font-size: 2rem;
     float: right;
 }
+
+main .insights>div.profile.doctor .rigth .info {
+    margin-top: 0;
+}
+
 main .insights>div.profile .rigth .info {
     padding-left: 1.8rem;
     margin-top: 1.8rem;
@@ -504,6 +513,7 @@ main .insights.settings>div form .form-row button {
 main .insights.settings>div form .form-row h4 {
     text-align: center;
 }
+
 main .insights.settings>div form .form-row:last-child {
     margin-bottom: 0;
 }
@@ -516,7 +526,7 @@ main form.add-form .form-row {
 }
 
 main form#form-trait .form-row {
-    grid-template-columns: 12rem auto 5rem;
+    grid-template-columns: 12rem auto 10rem 5rem;
 }
 
 main form#form-med .form-row {
@@ -539,9 +549,11 @@ main form.add-form .form-row>div *:last-child {
 main form.add-form .form-row h4 {
     text-align: center;
 }
+
 main form.add-form .form-row:last-child {
     margin-bottom: 0;
 }
+
 main form.add-form .form-row div:last-child {
     justify-content: center;
     color: red;
@@ -582,6 +594,14 @@ main form.add-form button {
     right: 1rem;
 }
 
+.bottom .table-title a.submit-btn-holder {
+    position: unset !important;
+    bottom: 5rem;
+    right: 1rem;
+    float: right;
+}
+
+
 main form.user-settings .submit-btn {
     padding: calc(0.3 * var(--card-padding));
 }
@@ -619,6 +639,7 @@ main .insights.settings .section-1 .privacy-settings .row .description .text-mut
 main .insights.settings .section-1 .privacy-settings .row {
     margin-bottom: 0;
 }
+
 main .insights.settings .section-1 .privacy-settings .row>label {
     margin: auto 0;
     margin-left: auto;
@@ -687,13 +708,14 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 /* end switch  */
 
 
 
 
 /* ====================================================
-====================== BOTTON =========================
+======================BOTTOM========================
 ======================================================= */
 
 main .bottom {
@@ -704,6 +726,24 @@ main .bottom {
 
 main .bottom h2 {
     margin-bottom: 0.8rem;
+}
+
+main .bottom .table-title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .bottom .table-title .add-new>div,
+main .bottom .table-title .add-new {
+    display: flex;
+    align-items: center;
+}
+
+
+main .bottom .table-title:nth-child(3) {
+    margin-top: 2.5rem;
 }
 
 main .bottom table {
@@ -833,6 +873,9 @@ main table tbody tr:last-child td {
     display: none;
 }
 
+.popup-holder.hide {
+    display: none;
+}
 
 
 
@@ -889,21 +932,21 @@ main table tbody tr:last-child td {
 ==================== SECTION-2 ========================
 ======================================================= */
 
-.rigth .section-2,
-.rigth .section-4,
-.rigth .section-5 {
+.section-2,
+.section-4,
+.section-5 {
     margin-top: 2rem;
 }
 
-.rigth .section-2 h2,
-.rigth .section-4 h2,
-.rigth .section-5 h2 {
+.section-2 h2,
+.section-4 h2,
+.section-5 h2 {
     margin-bottom: 0.8rem;
 }
 
-.rigth .section-2 .item,
-.rigth .section-4 .item,
-.rigth .section-5 .item {
+.section-2 .item,
+.section-4 .item,
+.section-5 .item {
     display: grid;
     grid-template-columns: 2.6rem auto 1.5rem 1.5rem;
     background: var(--color-white);
@@ -916,24 +959,107 @@ main table tbody tr:last-child td {
     transition: all 300ms ease;
 }
 
-.rigth .section-4 .item {
+.section-4 .item {
     grid-template-columns: 2.6rem auto 2rem;
 }
 
-.rigth .section-5 .item {
+.section-5 .item {
     grid-template-columns: 2.6rem auto 3rem;
 }
 
-.rigth .section-2 .item:hover,
-.rigth .section-4 .item:hover,
-.rigth .section-5 .item:hover {
+.section-2 .item:hover,
+.section-4 .item:hover,
+.section-5 .item:hover {
     box-shadow: none;
 }
 
-.rigth .section-2 .item>div span,
-.rigth .section-4 .item>div span,
-.rigth .section-5 .item>div span {
+.section-2 .item>div span,
+.section-4 .item>div span,
+.section-5 .item>div span {
     cursor: pointer;
+}
+
+.popup-holder .add-new,
+.section-4 .add-new {
+    background-color: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.popup-holder .add-new>div,
+.section-4 .add-new>div {
+    display: flex;
+}
+
+
+.popup-holder .add-new h3,
+.section-4 .add-new h3 {
+    margin: 0;
+}
+
+.popup-holder .add-new {
+    margin-bottom: 4rem;
+    margin-right: 2rem;
+    padding: 1rem var(--card-padding);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    float: right;
+}
+
+.popup-holder .add-new:hover {
+    box-shadow: none;
+}
+
+/* ====================================================
+==================== POP UP ====================
+======================================================= */
+
+.popup-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease;
+    z-index: 100;
+}
+
+.popup-holder .card {
+    width: 30%;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+}
+
+.popup-holder .card .close-btn {
+    display: flex;
+}
+
+.popup-holder .card .close-btn span {
+    margin-left: auto;
+    transition: all 300ms ease;
+}
+
+.popup-holder .card .close-btn span:hover {
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.popup-holder .card form .form-row {
+    margin: 2rem 0
+}
+
+.popup-holder .card form .form-row input {
+    width: 100%;
 }
 
 /* ====================================================
@@ -1000,7 +1126,7 @@ main table tbody tr:last-child td {
     main form#form-med .form-row {
         gap: 1rem;
         grid-template-columns: 10rem 8rem auto 3rem;
-        }
+    }
 
     main #form-holder-trait.card,
     main #form-holder-med.card {
@@ -1152,7 +1278,7 @@ main table tbody tr:last-child td {
         font-size: 2rem;
     }
 
-    .rigth #become-doctor{
+    .rigth #become-doctor {
         margin-top: -3rem;
     }
 
@@ -1160,11 +1286,14 @@ main table tbody tr:last-child td {
         top: 4rem
     }
 
-    .submit-btn-holder{
+    .submit-btn-holder {
         position: relative;
         right: unset;
         bottom: unset;
         margin-top: 3rem;
+    }
+    .popup-holder .card{
+        width: 80%;
     }
 }
 /*        AJAX               */

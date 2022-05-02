@@ -20,7 +20,7 @@
                     <span class="material-icons-sharp">analytics</span>
                     <div class="middle">
                         <h3>Total Sales</h3>
-                        <h1>{{income}}</h1>
+                        <h1>{{income}}  DH</h1>
                     </div>
                     <small class="text-muted">
                         Last Week
@@ -68,80 +68,29 @@
                                 <th>Quantity</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Status</th>
+                               
                             </tr>
                         </thead>
 
                         <tbody>
+                            {% for ord in ordonnances %}
                             <tr>
-                                <td>Doliprane</td>
-                                <td>100</td>
-                                <td>25 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="warning">
-                                    <span class="material-icons-sharp"> watch_later</span>
-                                </td>
+                                <td>{{ord.id_medicament.nom}}</td>
+                                <td>{{ord.quantite}}</td>
+                                <td>{{ord.date_purchase|date:"D d M Y" }}</td>
+                                <td>{{ord.date_purchase|time:"H:i"}}</td>
+                                
                             </tr>
 
-                            <tr>
-                                <td>Doliprane</td>
-                                <td>100</td>
-                                <td>25 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="warning">
-                                    <span class="material-icons-sharp"> watch_later</span>
-                                </td>
+                                
+                            {% empty %}
+                                 <tr>
+                                <td>No records</td>
+                                
                             </tr>
+                            {% endfor %}
 
-                            <tr>
-                                <td>Pomada Safra</td>
-                                <td>500</td>
-                                <td>10 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="success">
-                                    <span class="material-icons-sharp"> done</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Pomada Safra</td>
-                                <td>500</td>
-                                <td>10 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="success">
-                                    <span class="material-icons-sharp"> done</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Pomada Safra</td>
-                                <td>500</td>
-                                <td>10 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="success">
-                                    <span class="material-icons-sharp"> done</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Pomada Safra</td>
-                                <td>500</td>
-                                <td>10 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="success">
-                                    <span class="material-icons-sharp"> done</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Pomada Safra</td>
-                                <td>500</td>
-                                <td>10 Mai 2022</td>
-                                <td>01:00 PM</td>
-                                <td class="success">
-                                    <span class="material-icons-sharp"> done</span>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
@@ -149,3 +98,54 @@
             </div>
 
 {%endblock%}
+{%block content2%}
+<div class="section-1">
+                <h2>Last Patients</h2>
+                <div class="rows">
+                    {% for ord in ordonnances %}
+                        <div class="row">
+                        <div class="profile-photo">
+                            <img src="{{ord.id_visite.patient_id.person_id.img.url}}" alt="">
+                        </div>
+                        <div class="description">
+                            <p><b>{{ord.id_visite.patient_id.person_id.nom}} {{ord.id_visite.patient_id.person_id.prenom}}</b><br> {{ord.date_purchase|date:"D d M Y"}} &#8226  {{ord.date_purchase|time:"H:i"}}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                        <div class="row">
+                            No records
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="#" class="show-all-btn">Show All</a>
+            <!--------------- END OF SECTION-1 ------------>
+
+            <div class="section-5">
+                <h2>Recent Sales</h2>
+                
+                     
+{% for ord in ordonnances %}
+                <div class="item">
+                    <div class="profile-photo">
+                        <img src="{{ord.id_visite.patient_id.person_id.img.url}}" alt="">
+                    </div>
+                    <div class="description">
+                        <p><b>{{ord.id_visite.patient_id.person_id.nom}} {{ord.id_visite.patient_id.person_id.prenom}}</b> <br> {{ord.count}} <br> {{ord.date_purchase|date:"D d M Y"}} &#8226  {{ord.date_purchase|time:"H:i"}} <br></p>
+                    </div>
+                    <div class="primary">
+                        <h3>{{ord.prix}}</h3>
+                    </div>
+                </div>
+
+                
+             
+                {% empty %}
+                        <div class="row">
+                            No records
+                        </div>
+                {% endfor %}
+            </div>
+            <a href="#" class="show-all-btn">Show All</a>
+
+            {%endblock%}

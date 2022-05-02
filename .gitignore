@@ -1,4 +1,11 @@
 .idea/
 __pycache__/
-Pipfile
-Pipfile.lock
+ehealth/doctor/migrations/*
+ehealth/landing/migrations/*
+ehealth/med/migrations/*
+ehealth/mutuelle/migrations/*
+ehealth/ordonnance/migrations/*
+ehealth/patient/migrations/*
+ehealth/pharmacie/migrations/*
+ehealth/meds.db
+ehealth/db.sqlite3

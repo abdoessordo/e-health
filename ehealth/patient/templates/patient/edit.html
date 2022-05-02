@@ -16,7 +16,11 @@
                             </div>
                             <div class="description">
                                 <h2>Abdoessordo</h2>
-                                <h4 class="text-muted">Change Profile Picture</h4>
+                                <form action="{% url 'landing:change_pic'%}" method="POST" id="change-pic-form">
+                                    {%csrf_token%}
+                                    <input id="change-pic" type='file' name="img" class="text-muted">
+                                    
+                                </form>
                             </div>
                         </div>
                         <form action="{% url 'landing:profile_register' %}" class="user-settings" id="form-profile" method="POST">
@@ -77,11 +81,7 @@
                                 <button type="button" id="edit-7" onclick="switching(7)">
                                     <h4 class="text-muted">Edit</h4>
                             </div>
-                            <div class="form-row">
-                                
-                               
-                                
-                            </div>
+                            
                             <div class="form-row">
                                 <label for="">City</label>
                                 <input id="input-8" name="ville" class="primary" type="text"
@@ -126,12 +126,12 @@
                                     </small>
                                 </div>
                                 <label class="switch">
-                                    <input id="insrurance-btn" onclick="show_form(this.id)" name="a_mutuelle"
+                                    <input id="insrurance-btn" onclick="show_form(this.id)" name=""
                                         type="checkbox" {% if user.person.patient.a_mutuelle %} checked {%endif%}>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <form action="" class="user-settings hide-from" id="form-assur" method="POST">
+                            <form action="{% url 'patient:register' %}" class="user-settings hide-from" id="form-assur" method="POST">
                                 {% csrf_token %}
                                 <div class="form-row">
                                     <label for="">N&deg Affiliation</label>
@@ -150,7 +150,7 @@
                                     </button>
                                 </div>
                                  <input id="input-privacy" name="privacy" class="primary" type="text"
-                                    value="" hidden >
+                                    value="{% if user.person.patient.permission_privacy %}on {%else%}off{%endif%}"  >
                                 <div class="form-row">
                                     <label for="">Date d'adhesion</label>
                                     <input id="input-11" name="date_adhesion" class="primary" type="date"
@@ -186,15 +186,21 @@
                             <span class="slider round"></span>
                         </label>
                     </div>
-                    <form action="{% url 'doctor:register' %}" class="become-doctor-form hide-from" id="form-doc" method="POST">
+                    <form action="{% url 'doctor:register' %}" class="become-doctor-form {% if not user.person.doctor %} hide-from {%endif%}" id="form-doc" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
                             <label for="">INP</label>
                             <input id="input-12" name="INP" class="primary" type="text" value="{{user.person.doctor.INP}}" readonly>
                             <button type="button" id="edit-12" onclick="switching(12)">
+                                <h4 class="text-muted">Edit</h4></button>
+                        </div>
+                         <div class="form-row">
+                            <label for="">Speciality</label>
+                            <input id="input-16" name="speciality" class="primary" type="text" value="{{user.person.doctor.speciality}}" readonly>
+                            <button type="button" id="edit-16" onclick="switching(16)">
                                 <h4 class="text-muted">Edit</h4>
-                        </div></button>
-
+                            </button>
+                        </div>
                         <div class="form-row">
                             <label for="">City</label>
                             <input id="input-13" name="ville" class="primary" type="text" value="{{user.person.doctor.ville}}" readonly>
@@ -207,7 +213,7 @@
                     </form>
                 </div>
 
-
+                {% if user.person.doctor.activated %} Active {%elif user.person.doctor.activated == 0%} Not Active {%endif%}
             </div>
 
             <div id="become-pharmacie" class="section-1">
@@ -225,27 +231,27 @@
                             <span class="slider round"></span>
                         </label>
                     </div>
-                    <form action="{% url 'pharmacist:register' %}" class="become-pharmacist-form hide-from" id="form-pharma" method="POST"> 
+                    <form action="{% url 'pharmacist:register' %}" class="become-pharmacist-form {% if not user.person.pharmacie %} hide-from {%endif%}" id="form-pharma" method="POST"> 
                         {% csrf_token %}
                         <div class="form-row">
                             <label for="">INP</label>
-                            <input id="input-14" name="inp" class="primary" type="text" value="{{request.user.preson.pharmacie.INP}}" readonly>
+                            <input id="input-14" name="INP" class="primary" type="text" value="{{user.person.pharmacie.INP}}" readonly>
                             <button type="button" id="edit-14" onclick="switching(14)">
                                 <h4 class="text-muted">Edit</h4></button>
                         </div>
 
                         <div class="form-row">
                             <label for="">Nom de la pharmacie</label>
-                            <input id="input-15" name="nom" class="primary" type="text" value="{{request.user.preson.pharmacie.nom}}" readonly>
-                            <button type="button" id="edit-15" onclick="switching(15)">
+                            <input id="input-17" name="nom" class="primary" type="text" value="{{ user.person.pharmacie.nom }}" readonly>
+                            <button type="button" id="edit-17" onclick="switching(17)">
                                 <h4 class="text-muted">Edit</h4>
                             </button>
                         </div>
 
                         <div class="form-row">
                             <label for="">Adresse</label>
-                            <input id="input-15" name="adresse" class="primary" type="text" value="{{request.user.preson.pharmacie.adresse}}" readonly>
-                            <button type="button" id="edit-15" onclick="switching(15)">
+                            <input id="input-18" name="adresse" class="primary" type="text" value="{{user.person.pharmacie.adresse}}" readonly>
+                            <button type="button" id="edit-18" onclick="switching(18)">
                                 <h4 class="text-muted">Edit</h4>
                             </button>
                         </div>
@@ -254,7 +260,7 @@
 
                          <div class="form-row">
                             <label for="">City</label>
-                            <input id="input-15" name="city" class="primary" type="text" value="{{request.user.preson.pharmacie.ville}}" readonly>
+                            <input id="input-15" name="ville" class="primary" type="text" value="{{user.person.pharmacie.ville}}" readonly>
                             <button type="button" id="edit-15" onclick="switching(15)">
                                 <h4 class="text-muted">Edit</h4>
                             </button>
@@ -262,12 +268,13 @@
 
 
                     </form>
+                    {% if user.person.pharmacie.activated %} Active {%elif user.person.pharmacie.activated == 0%} Not Active {%endif%}
                 </div>
             </div>
 
 
-            <div  id="submit_btn_settings" id="submit" class="submit-btn-holder" type="submit">
-                <div class="submit-btn">
+            <div  id="submit_btn_settings" id="submit" class="" type="submit">
+                <div class="">
                     <span class="material-icons-sharp">
                         save
                     </span>
