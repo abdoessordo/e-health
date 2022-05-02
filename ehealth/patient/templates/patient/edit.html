@@ -16,7 +16,9 @@
                             </div>
                             <div class="description">
                                 <h2>Abdoessordo</h2>
+                                
                                 <form action="{% url 'landing:change_pic'%}" method="POST" id="change-pic-form">
+                                    <label id="change-pic-btn" for="change-pic" class="text-muted">Change ProfilePicture</label>
                                     {%csrf_token%}
                                     <input id="change-pic" type='file' name="img" class="text-muted">
                                     

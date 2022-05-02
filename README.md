@@ -17,4 +17,10 @@ GA3 JS DYALNA INCOMPATIBLE M3A MOZILA FIREFOX WELCOME TO FRONT END
 ESSORDO TODO :
 - STYLE PAGINATION (check doctor's consultations)
 - pharmacie :  form to add price ...
-- ADD HERE
+- Pop up in activate doctor and pharmacie
+- remove Abdoessordo f settings o replace b person name
+- styli save changes
+- Enable Edit Name, Email, Gender, Birthday in case user ghlt f inscription
+- New landing
+- Register in 2 pages 
+- Prescription while patient

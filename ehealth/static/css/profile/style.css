@@ -185,6 +185,7 @@ aside .top {
     justify-content: space-between;
     align-items: center;
     margin-top: 1.4rem;
+    position: fixed;
 }
 
 aside .logo {
@@ -214,8 +215,9 @@ aside .sidebar {
     display: flex;
     flex-direction: column;
     height: 86vh;
-    position: relative;
-    top: 3rem;
+    position: fixed;
+    top: 6.5rem;
+    width: 15rem;
 }
 
 aside h3 {
@@ -239,7 +241,7 @@ aside .sidebar a span {
 }
 
 aside .sidebar a:last-child {
-    position: absolute;
+    position: fixed;
     bottom: 1rem;
     width: 100%;
 }
@@ -327,6 +329,10 @@ main .insights>div.profile.doctor .left {
 }
 
 main .insights>div.profile .left {
+    border-right: 1px solid var(--color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
@@ -710,9 +716,22 @@ input:checked+.slider:before {
 }
 
 /* end switch  */
+/* ====================================================
+============== CHANGE PROFILE PICTURE ==================
+======================================================= */
 
+form#change-pic-form {
+    margin: 0;
+}
 
+form#change-pic-form #change-pic-btn {
+    cursor: pointer;
+    font-size: 0.9rem;
+}
 
+form#change-pic-form #change-pic {
+    display: none;
+}
 
 /* ====================================================
 ======================BOTTOM========================
@@ -788,6 +807,14 @@ main table tbody tr:last-child td {
     display: flex;
     justify-content: end;
     gap: 2rem;
+    position: fixed;
+    right: 2.8rem;
+    z-index: 90;
+    }
+
+    .rigth .section-1:nth-child(2),
+    .rigth .section-3 {
+        margin-top: 4rem !important;
 }
 
 .rigth .top button {
@@ -883,10 +910,11 @@ main table tbody tr:last-child td {
 ====================== SECTION-1 ======================
 ======================================================= */
 .section-1,
-.section-1,
-.rigth .section-3 {
+.section-1 {
     margin-top: 1rem;
 }
+
+
 
 .section-1 h2,
 .rigth .section-3 h2 {
@@ -1170,6 +1198,15 @@ main table tbody tr:last-child td {
         display: inline;
     }
 
+    aside .top {
+        position: unset;
+    }
+
+    aside .sidebar {
+        position: relative;
+        top: 3rem;
+    }
+
     aside .sidebar h3 {
         display: inline;
     }
@@ -1292,33 +1329,7 @@ main table tbody tr:last-child td {
         bottom: unset;
         margin-top: 3rem;
     }
-    .popup-holder .card{
+.popup-holder .card {
         width: 80%;
     }
-}
-/*        AJAX               */
-main form.add-form .form-row>div{
-    border-bottom: 0;
-    justify-content: start;
-    }
-.form-row > div > input,.form-row > div > textarea{
-    border-bottom: 1px solid var(--color-light);
-}
-
-.ajax-primary{
-
-    padding-top: 0.5rem !important;
-}
-.input-ajax{
-    padding-top:  2rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-}
-.ajax_option{
-    padding: 5px !important;
-}
-.select-ajax{
-    overflow-y: auto;
-    padding: 0px !important;
-
 }

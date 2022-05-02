@@ -154,4 +154,6 @@ def search_doc(request):
 			docs=Doctor.objects.filter(**filters)
 		return render(request,"patient/search_result.html",{"book":True,"docs":docs})
 	else:
-		return render(request,"patient/search.html",{"book":True})
+		visites = Appointement.objects.filter(
+			patient_id=request.user.person.patient).select_related("medcin_id")
+		return render(request,"patient/search.html",{"book":True, "visites":visites})

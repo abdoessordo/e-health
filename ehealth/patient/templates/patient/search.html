@@ -3,103 +3,145 @@
 {% block content %}
 
 
-        <h1>Search Doctor,<br><span class="primary">Make an Appointment</span></h1>
-            
+<h1>Search Doctor,<br><span class="primary">Make an Appointment</span></h1>
 
-            <div class="card" id="form-search-doc">
-                <form class="add-form" id="search-doc" action="" method="POST">
-                    {%csrf_token%}
-                    <div class="rows">
 
-                        <div class="form-row " id="row-1">
+<div class="card" id="form-search-doc">
+    <form class="add-form" id="search-doc" action="" method="POST">
+        {%csrf_token%}
+        <div class="rows">
 
-                            <div>
-                                <div class="row-elemnt">
-                                    <input name="ville" class="primary" type="text" placeholder="Search Location">
-                                    <div>
-                                        <span class="material-icons-sharp">
-                                            location_on
-                                        </span>
-                                    </div>
+            <div class="form-row " id="row-1">
 
-                                </div>
-                                <small class="text-muted">Based on your Location</small>
-                            </div>
-
-                            <div>
-                                <div class="row-elemnt">
-                                    <input  name="nom" class="primary" type="text"
-                                        placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
-                                    <div>
-                                        <span class="material-icons-sharp">
-                                            search
-                                        </span>
-                                    </div>
-                                </div>
-                                <small class="text-muted">Ex : Dental or Sugar Check up etc
-                                </small>
-                            </div>
+                <div>
+                    <div class="row-elemnt">
+                        <input name="ville" class="primary" type="text" placeholder="Search Location">
+                        <div>
+                            <span class="material-icons-sharp">
+                                location_on
+                            </span>
                         </div>
+
                     </div>
-
-
-                    <button type="submit">
-                        <div class="submit-btn">
-                            <h3>Make Appointment</h3>
-                        </div>
-                    </button>
-                </form>
-            </div>
-
-
-
-
-
-            <!--------------- END OF INSIGHTS ------------>
-
-        </main>
-
-        <div class="rigth">
-            <div class="top">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">menu</span>
-                </button>
-                <div class="theme-toggler" id="theme-toggler">
-                    <span class="material-icons-sharp active">light_mode </span>
-                    <span class="material-icons-sharp">dark_mode</span>
+                    <small class="text-muted">Based on your Location</small>
                 </div>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Abdellah</b></p>
-                        <small class="role" onclick="dropMenu(this)">
-                            <small class="text-muted">Doctor</small>
-                            <span class="material-icons-sharp">expand_more</span>
-                        </small>
-                        <ul class="drop-down-content">
-                            <h3>
-                                <li><a href="./patient.html">Patient</a></li>
-                            </h3>
-                            <h3>
-                                <li><a href="./doctor.html">Docteur</a></li>
-                            </h3>
-                            <h3>
-                                <li><a href="./pharmacien.html">Pharmacien</a></li>
-                            </h3>
-                        </ul>
 
+                <div>
+                    <div class="row-elemnt">
+                        <input name="nom" class="primary" type="text"
+                            placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
+                        <div>
+                            <span class="material-icons-sharp">
+                                search
+                            </span>
+                        </div>
                     </div>
-                    <div class="profile-photo">
-                        <img src="./images/profile-1.jpg" alt="">
-                    </div>
+                    <small class="text-muted">Ex : Dental or Sugar Check up etc
+                    </small>
                 </div>
             </div>
         </div>
 
 
+        <button type="submit">
+            <div class="submit-btn">
+                <h3>Make Appointment</h3>
+            </div>
+        </button>
+    </form>
+</div>
 
+<div class="bottom">
+    <h2>My appointments</h2>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for visite in  visites %}
+                <tr>
+                    <td><a href="{% url 'patient:book' visite.medcin_id.pk %}">{{visite.medcin_id.person_id.nom}}
+                            {{visite.medcin_id.person_id.prenom}}</a></td>
+                    <td>
+
+                        {{ visite.date }} </td>
+                    <td>
+
+                        {{ visite.heure }}</td>
+
+                    {% if visite.status %}
+                    <td class="warning">
+                        <span class="material-icons-sharp"> watch_later</span>
+                    </td>
+                    {% else %}
+                    <td class="success">
+                        <span class="material-icons-sharp"> done</span>
+                    </td>
+                    {%endif%}
+                </tr>
+                {%empty%}
+                <td>No records</td>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
     </div>
-    
+</div>
+
+
+
+<!--------------- END OF INSIGHTS ------------>
+
+</main>
+
+<div class="rigth">
+    <div class="top">
+        <button id="menu-btn">
+            <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler" id="theme-toggler">
+            <span class="material-icons-sharp active">light_mode </span>
+            <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        <div class="profile">
+            <div class="info">
+                <p>Hey, <b>Abdellah</b></p>
+                <small class="role" onclick="dropMenu(this)">
+                    <small class="text-muted">Doctor</small>
+                    <span class="material-icons-sharp">expand_more</span>
+                </small>
+                <ul class="drop-down-content">
+                    <h3>
+                        <li><a href="./patient.html">Patient</a></li>
+                    </h3>
+                    <h3>
+                        <li><a href="./doctor.html">Docteur</a></li>
+                    </h3>
+                    <h3>
+                        <li><a href="./pharmacien.html">Pharmacien</a></li>
+                    </h3>
+                </ul>
+
+            </div>
+            <div class="profile-photo">
+                <img src="./images/profile-1.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
 
 {%endblock%}
-
-
