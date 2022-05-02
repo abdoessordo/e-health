@@ -58,6 +58,7 @@ html {
 
 form,
 form input,
+form select,
 form textarea,
 form button {
     font-family: poppins, sans-serif;
@@ -204,6 +205,181 @@ aside .close {
     display: none;
 }
 
+/* ====================================================
+====================== SIDEBAR ======================== 
+======================================================= */
+
+.landing {
+    display: grid;
+    grid-template-columns: 44% auto;
+    min-height: 100vh;
+    background-color: var(--color-background);
+}
+
+.landing .left {
+    margin-top: 1rem;
+    position: relative;
+}
+
+.landing .left aside {
+    height: unset;
+}
+
+.landing .left aside .logo {
+    justify-content: center;
+    align-items: center;
+}
+
+.landing .left aside .logo img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.landing .left aside .logo h2 {
+    font-size: 3rem;
+}
+
+.landing .left main {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 6rem;
+    width: 100%;
+}
+
+
+.landing .left main .card {
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing .left main .card .top {
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.landing .left main span {
+    margin: 0 auto;
+    margin-bottom: 0;
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+.landing .left main form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing .left main form .row {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-light);
+    width: 90%;
+}
+
+.landing .left main form .row input {
+    text-align: center;
+}
+
+.landing .left main form .row select.login-as {
+    text-align: center;
+    cursor: pointer;
+}
+
+.landing .left main form .row input::placeholder {
+    transition: all 300ms ease;
+}
+
+.landing .left main form .row input:focus::placeholder {
+    color: transparent;
+}
+
+.landing .left main form button#login-btn {
+    cursor: pointer;
+    background-color: var(--color-primary);
+    width: unset;
+    margin-top: 3rem;
+    padding: 0.5rem 7rem;
+    border: 0.2rem dashed var(--color-primary);
+    border-radius: var(--card-border-radius);
+    color: white;
+    transition: all 300ms ease;
+}
+
+.landing .left main form button#login-btn:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.landing .left main form button#login-btn h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.landing .left main h3.text-muted {
+    margin-top: 2rem;
+}
+
+.landing .left main a {
+    text-decoration: underline;
+}
+
+.landing .left main .card .bottom {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing .left main .card .bottom h3 {
+    font-size: 1rem;
+}
+
+.landing .right {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%),
+        url("../../images/landing/Background.png");
+}
+
+
+.landing .right .welcome {
+    position: absolute;
+    bottom: 15rem;
+    color: var(--color-white);
+    padding-left: 3rem;
+}
+
+.landing .right .welcome h1 {
+    font-size: 4rem;
+}
+
+.landing .right .welcome h2 {
+    display: block;
+    padding-right: 30%;
+    text-align: justify;
+    font-weight: 400;
+    text-shadow: var(--box-shadow);
+}
+
 
 /* ====================================================
 ====================== SIDEBAR ======================== 
@@ -304,7 +480,7 @@ main .insights,
 main .insights.dashboard,
 main .insights.insurances {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.6rem;
 }
 
@@ -372,6 +548,7 @@ main .insights>.card .middle a *:last-child {
     padding-left: 1.5rem;
 }
 
+main .insights.dashboard>.card:last-child,
 main .insights.insurances>.card:last-child {
     background: transparent;
     border: 2px dashed var(--color-primary);
@@ -382,7 +559,9 @@ main .insights.insurances>.card:last-child {
     cursor: pointer;
 }
 
-
+main .insights.dashboard>div:last-child span {
+    background: var(--color-primary);
+}
 
 main .insights h3 {
     margin: 1rem 0 0.6rem;
@@ -1225,6 +1404,17 @@ h3.create-insurance-instructions {
         position: absolute;
     }
 
+    .landing {
+        grid-template-columns: 60% auto;
+    }
+
+    .landing .right .welcome {
+        bottom: 25rem;
+    }
+
+    .landing .left main .bottom {
+        all: unset;
+    }
 
 }
 
@@ -1232,6 +1422,32 @@ h3.create-insurance-instructions {
 /* ========== MOBILE PHONES ========== */
 
 @media screen and (max-width:768px) {
+    body.briclole {
+        height: unset;
+    }
+
+    .landing {
+        all: unset;
+    }
+
+    .landing .left aside {
+        all: unset;
+    }
+
+    .landing .left main {
+        position: relative;
+        top: unset;
+        left: unset;
+        margin-top: 5rem;
+        transform: unset;
+        height: 100%;
+        padding-inline: 2rem;
+    }
+
+    .landing .right {
+        display: none;
+    }
+
     .container {
         width: 100%;
         grid-template-columns: 1fr;
@@ -1260,14 +1476,14 @@ h3.create-insurance-instructions {
     aside .logo h2 {
         display: inline;
     }
-aside .top {
-    position: unset;
-}
+    aside .top {
+        position: unset;
+    }
 
-aside .sidebar {
-    position: relative;
-    top: 3rem;
-}
+    aside .sidebar {
+        position: relative;
+        top: 3rem;
+    }
 
     aside .sidebar h3 {
         display: inline;

@@ -9,6 +9,7 @@ import logging
 from django.views.decorators.http import require_POST
 from  django.http import HttpResponse, JsonResponse
 from django.contrib import messages
+
 def re_redirect(request,loginp):
 
 			if loginp==1:
@@ -40,6 +41,7 @@ def re_redirect(request,loginp):
 
 				messages.add_message(request, messages.ERROR, 'Something is Wrong')
 				return  redirect("patient:visites")
+				
 def login_user(request):
 	
 
@@ -62,19 +64,7 @@ def login_user(request):
 
 	else:
 		return render(request,"landing/login.html", {})
-	
-# def get_type(request):
-# 	user=request.user
-# 	doctor=user.doctor
-# 	patient=user.patient
-# 	pharmacie=user.pharmacie
-# 	if doctor:
-# 		return render(request, 'doctor/visites.html', {"role":"doctor"})
-# 	if patient:
-# 		return render(request, 'doctor/visites.html', {"role":"patient"})
 
-# 	if pharmacie:
-# 		return render(request, 'doctor/visites.html', {"role":"pharmacie"})
 
 
 # NEW LANGING PAGE
@@ -140,4 +130,4 @@ from django.contrib.auth import logout
 
 def logout_view(request):
     logout(request)
-    return redirect('landing:index')
+    return redirect('landing:login')
