@@ -123,7 +123,7 @@ const create_row = (type, row_num) => {
             </div>
             <div>
                                 <label for="">Traitement Price</label>
-                                <input class="primary" type="number" placeholder="Enter Price"></input>
+                                <input class="primary" type="number" placeholder="Enter Price" name="price"></input>
                             </div>
 
             <div>

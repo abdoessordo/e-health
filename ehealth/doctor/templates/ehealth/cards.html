@@ -29,27 +29,14 @@
                 <div class="card">
                     <span class="material-icons-sharp">phone_in_talk</span>
                     <div class="middle">
-                        <h3>{% if doctor %}Phone Calls{% elif patient %} Insurances {% elif pharmacist %} Total Expenses{% endif %}</h3>
-                        <h1>{% if patient %} {{insurances.total}} {%endif%}</h1>
+                        <h3>{% if doctor %}Consultations{% elif patient %} Insurances {% elif pharmacist %} Total Total
+                            Income{% endif %}</h3>
+                        <h1>{% if doctor %}{{visites|length}} {% elif patient %} {{ordon_num}}{%endif%}{% if patient %}
+                            {{insurances.total}} {%endif%}</h1>
                     </div>
                     <small class="text-muted">
                         Last Week
                     </small>
                 </div>
                 <!--------------- END OF CARD 3 ------------>
-                <div class="card">
-                    <span class="material-icons-sharp">medication</span>
-                    <div class="middle">
-                        <h3>{% if doctor %}Consultations{% elif patient %} Prescriptions {% elif pharmacist %} Total Income{% endif %}</h3>
-                        <h1>{% if doctor %}{{visites|length}} {% elif patient %} {{ordon_num}}{%endif%}</h1>
-                    </div>
-                    <small class="text-muted">
-                        {% if doctor %}Last Week{% elif patient %} All Time {% elif pharmacist %} Last Week{% endif %}
-                    </small>
-                </div>
-                <!--------------- END OF CARD 4 ------------>
-                <div class="card">
-                    <span class="material-icons-sharp">add </span>
-                </div>
-                <!--------------- END OF CARD 5 ------------>
             </div>

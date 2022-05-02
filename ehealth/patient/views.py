@@ -67,6 +67,7 @@ def get_visite_details(request,visite):
 	return render(request,"doctor/visite_details.html",{
 				
 				"visite":visite,
+				"profile":True,
 		})
 def dashboard(request):
 	
@@ -78,7 +79,7 @@ def dashboard(request):
 	ordon_num=Ordonnance.objects.filter(id_visite__patient_id=request.user.person.patient).count()
 	
 	query_set = AllMutuelle.objects.filter(patient_id=request.user.person.patient)[:3]
-	visites=Appointement.objects.filter(patient_id=request.user.person.patient).order_by("-date").select_related("medcin_id")
+	visites=Appointement.objects.filter(patient_id=request.user.person.patient).select_related("medcin_id")
 	total = AllMutuelle.objects.filter(patient_id=request.user.person.patient).aggregate(total=Count("id"))
 
 	return render(request,"patient/dashboard.html",{"count_visites":count_visites,"insurances_query":query_set,"insurances":total,"dashboard":True,"visites":visites,"title":"Dashoard","pres":pres})

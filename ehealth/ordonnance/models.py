@@ -17,5 +17,5 @@ class Ordonnance(models.Model):
 	price=models.IntegerField(null=True,blank=True)
 	a_mutuelle=models.BooleanField(default=False)
 	nom_traitement=models.CharField(max_length=255,null=True,blank=True)
-	date_purchase=models.DateTimeField()
+	date_purchase=models.DateTimeField(auto_now_add=True)
 
