@@ -3,80 +3,93 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' } %}">
-    <title>Document</title>
-  </head>
-  <body class="briclole">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/dashboard/style.css' } %}">
+		<title>Document</title>
+	</head>
+	<body class="briclole">
 
-    <div class="landing">
-      <div class="left">
-        <aside>
-          <div class="logo">
-            <img src="{% static 'images/dashboard/logo.png' %}" alt="">
-            <h2>e-<span class="danger">HEALTH</span></h2>
-          </div>
-        </aside>
-        <main>
-          <div class="card">
-            <div class="top">
-              <span class="material-icons-sharp">
-                fingerprint
-              </span>
-              <form action="" method="POST">
-                {% csrf_token %}
+		<div class="landing">
+			<div class="left">
+				<aside>
+					<div class="logo">
+						<img src="{% static 'images/dashboard/logo.png' %}" alt="">
+						<h2>e-<span class="danger">HEALTH</span></h2>
+					</div>
+				</aside>
+				<main>
+					<div class="card">
+						<div class="top">
+							<span class="material-icons-sharp">
+								fingerprint
+							</span>
 
-                <div class="row">
-                  <input type="text" placeholder="Enter CIN" name="username">
-                  </div>
+							<form action="" method="POST">
+								{% csrf_token %}
 
-                <div class="row">
-                  <input type="password" placeholder="Enter Password" name="password">
-                </div>
-            <div class="row">
-              <select name="login" id="test" required class="login-as">
-                <option value="" selected="">Login As</option>
-                <option value="1">Patient</option>
-                <option value="2">Docteur</option>
-                <option value="3">Pharmacien</option>
-              </select>
-            </div>
+								<div class="row">
+									<input type="text" placeholder="Enter CIN" name="username">
+								</div>
 
-                <button id="login-btn" type="submit">
-                  <h2>Log In</h2>
-                </button>
-                </form>
-                <h3 class="text-muted">
-                  Can't remeber your password? <a class="text-muted" href="#">Recover it</a>.
-                </h3>
-                </div>
-            <div class="bottom">
-              <h3>
-                Don't Have an Account? <a href="#">Create it</a>.
-              </h3>
-            </div>
-            <!-- <h4 class="text-muted">
+								<div class="row">
+									<input type="password" placeholder="Enter Password" name="password">
+								</div>
+								<div class="row login-as" id="login-as-input" onclick="toggle_login_as_menu(this)">
+									
+									<input id="login" type="text" required name="login" hidden>
+
+									<h3 class="text-muted">Login As</h3>
+									<span class="material-icons-sharp">expand_more</span>
+								</div>
+								<ul class="drop-down-content hide" id="login-as-menu">
+									<h3>
+										<li onclick="set_login_as_value(this, 1)">Patient</li>
+									</h3>
+									<h3>
+										<li onclick="set_login_as_value(this, 2)">Docteur</li>
+									</h3>
+									<h3>
+										<li onclick="set_login_as_value(this, 3)">Pharmacien</li>
+									</h3>
+								</ul>
+
+								<button id="login-btn" type="submit">
+									<h2>Log In</h2>
+								</button>
+								</form>
+								<h3 class="text-muted">
+									Can't remeber your password? <a class="text-muted" href="#">Recover it</a>.
+								</h3>
+								</div>
+								<div class="bottom">
+									<h3>
+										Don't Have an Account? <a href="#">Create it</a>.
+									</h3>
+								</div>
+								<!-- <h4 class="text-muted">
                             By creating an account, you agree and accept our <a class="text-muted" href="#">Terms</a> and <a
                                class="text-muted" href="#">Privacy Policy</a>
                         </h4> -->
-            </div>
-        </main>
-      </div>
-      <div class="right">
-        <div class="welcome">
-          <h1>
-            Welcome to your private space.
-          </h1>
-          <h2>
-            An integrated information system that allows the implementation of new
-            health management methods.
-          </h2>
-        </div>
-        </div>
-        </div>
-  </body>
+					</div>
+					</main>
+					</div>
+					<div class="right">
+						<div class="welcome">
+							<h1>
+								Welcome to your private space.
+							</h1>
+							<h2>
+								An integrated information system that allows the implementation of new
+								health management methods.
+							</h2>
+						</div>
+					</div>
+					</div>
+     <script src="{% static 'script/login/login.js' %}"></script>
+
+	</body>
 </html>

@@ -21,6 +21,6 @@ ESSORDO TODO :
 - remove Abdoessordo f settings o replace b person name
 - styli save changes
 - Enable Edit Name, Email, Gender, Birthday in case user ghlt f inscription
-- New landing
+- New register
 - Register in 2 pages 
 - Prescription while patient
